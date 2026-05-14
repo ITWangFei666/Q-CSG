@@ -9,6 +9,7 @@ export const DAY3_REVIEW = {
   questions: [
     {
       scenario: '签发人在审核工作票时发现工作任务写"处理缺陷"（不具体），同时保留带电部位写"无"。此时签发人应该怎么做？',
+      weakness_tag: 'role_issuer',
       options: [
         { text: '先签再说，小问题', correct: false },
         { text: '退回修改，要求补充具体工作任务和保留带电部位', correct: true },
@@ -20,6 +21,7 @@ export const DAY3_REVIEW = {
     },
     {
       scenario: '作业过程中天气突变，开始下大雨并伴有雷电。此时谁有权决定立即停工？',
+      weakness_tag: 'role_leader',
       options: [
         { text: '只有管理层有权决定', correct: false },
         { text: '只有许可人有权决定', correct: false },

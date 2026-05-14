@@ -152,6 +152,7 @@ export const DAY1_ENRICHED_STEPS = [
     questions: [
       {
         scenario: '某10kV输电线路绝缘子老化需要更换，需要停电作业。',
+        weakness_tag: 'ticket_type',
         options: [
           { text: '电气第一种工作票', correct: true },
           { text: '电气第二种工作票', correct: false },
@@ -163,6 +164,7 @@ export const DAY1_ENRICHED_STEPS = [
       },
       {
         scenario: '对运行中的110kV变压器进行红外测温。',
+        weakness_tag: 'ticket_type',
         options: [
           { text: '电气第一种工作票', correct: false },
           { text: '电气第二种工作票', correct: true },
@@ -174,6 +176,7 @@ export const DAY1_ENRICHED_STEPS = [
       },
       {
         scenario: '夜间暴雨导致10kV线路跳闸，需要立即排查故障，预计2小时完成。',
+        weakness_tag: 'ticket_type',
         options: [
           { text: '电气第一种工作票', correct: false },
           { text: '电气第二种工作票', correct: false },
@@ -185,6 +188,7 @@ export const DAY1_ENRICHED_STEPS = [
       },
       {
         scenario: '变电站内焊接接地扁铁。',
+        weakness_tag: 'ticket_type',
         options: [
           { text: '电气第一种工作票', correct: false },
           { text: '动火工作票', correct: true },
@@ -196,6 +200,7 @@ export const DAY1_ENRICHED_STEPS = [
       },
       {
         scenario: '更换低压配电箱内的空气开关。',
+        weakness_tag: 'ticket_type',
         options: [
           { text: '电气第一种工作票', correct: false },
           { text: '电气第二种工作票', correct: true },

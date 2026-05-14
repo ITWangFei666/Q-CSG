@@ -149,6 +149,7 @@ export const DAY5_ENRICHED_STEPS = [
     questions: [
       {
         scenario: '企业决定上数字化工作票系统，第一步应该做什么？',
+        weakness_tag: 'digital_path',
         options: [
           { text: '直接采购最先进的AI智能系统', correct: false },
           { text: '先电子化（把纸质票变成电子票），再逐步智能化', correct: true },
@@ -160,6 +161,7 @@ export const DAY5_ENRICHED_STEPS = [
       },
       {
         scenario: '数字化系统上线后，票面合格率从70%提升到95%。这说明什么？',
+        weakness_tag: 'digital_path',
         options: [
           { text: '数字化解决了所有安全问题', correct: false },
           { text: '数字化提升了规范性和效率，但人的安全意识仍然是根本', correct: true },

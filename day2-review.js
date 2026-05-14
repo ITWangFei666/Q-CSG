@@ -9,6 +9,7 @@ export const DAY2_REVIEW = {
   questions: [
     {
       scenario: '以下哪个设备名称符合"双重命名"规范？',
+      weakness_tag: 'device_naming',
       options: [
         { text: '城南线', correct: false },
         { text: '10kV城南线', correct: false },
@@ -20,6 +21,7 @@ export const DAY2_REVIEW = {
     },
     {
       scenario: '危险点分析栏应该写成什么格式？',
+      weakness_tag: 'danger_point',
       options: [
         { text: '触电：注意安全', correct: false },
         { text: '触电：小心', correct: false },
@@ -31,6 +33,7 @@ export const DAY2_REVIEW = {
     },
     {
       scenario: '保留带电部位栏填写"无"，以下哪种情况是正确的？',
+      weakness_tag: 'charged_zone',
       options: [
         { text: '现场确实没有其他带电设备', correct: false },
         { text: '同杆架设的另一回线路停电了', correct: false },

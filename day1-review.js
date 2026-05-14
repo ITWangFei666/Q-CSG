@@ -9,6 +9,7 @@ export const DAY1_REVIEW = {
   questions: [
     {
       scenario: '某变电站内需对10kV配电室进行整体清扫，涉及多个开关柜的操作，预计需要6小时完成。应选择哪种票？',
+      weakness_tag: 'ticket_type',
       options: [
         { text: '电气第一种工作票', correct: true },
         { text: '紧急抢修单', correct: false },
@@ -20,6 +21,7 @@ export const DAY1_REVIEW = {
     },
     {
       scenario: '以下关于"两票三制"的说法，哪一个是错误的？',
+      weakness_tag: 'ticket_type',
       options: [
         { text: '两票指工作票和操作票', correct: false },
         { text: '三制指交接班制、巡回检查制、设备定期试验轮换制', correct: false },
@@ -31,6 +33,7 @@ export const DAY1_REVIEW = {
     },
     {
       scenario: '工作票上的签字代表什么？',
+      weakness_tag: 'role_issuer',
       options: [
         { text: '领导知情，走个流程', correct: false },
         { text: '法律承诺，承担安全责任', correct: true },

@@ -9,6 +9,7 @@ export const DAY4_REVIEW = {
   questions: [
     {
       scenario: '装设接地线时，正确的顺序是什么？',
+      weakness_tag: 'ground_wire',
       options: [
         { text: '先接导体端，后接接地端', correct: false },
         { text: '先接接地端，后接导体端', correct: true },
@@ -20,6 +21,7 @@ export const DAY4_REVIEW = {
     },
     {
       scenario: '验电时以下哪个步骤可以省略？',
+      weakness_tag: 'safety_seq',
       options: [
         { text: '自检（确认验电器本身正常）', correct: false },
         { text: '在已知带电设备上验证', correct: false },

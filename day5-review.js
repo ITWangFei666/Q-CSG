@@ -9,6 +9,7 @@ export const DAY5_REVIEW = {
   questions: [
     {
       scenario: '某供电局上数字化工作票系统后，票面合格率从70%提升到95%。以下哪种认识是正确的？',
+      weakness_tag: 'digital_path',
       options: [
         { text: '数字化解决了所有安全问题', correct: false },
         { text: '可以取消人工审核了', correct: false },
@@ -20,6 +21,7 @@ export const DAY5_REVIEW = {
     },
     {
       scenario: '企业决定上数字化工作票系统，最合理的实施路径是什么？',
+      weakness_tag: 'digital_path',
       options: [
         { text: '一步到位，直接上AI智能系统', correct: false },
         { text: '先电子化，积累数据后再逐步智能化', correct: true },

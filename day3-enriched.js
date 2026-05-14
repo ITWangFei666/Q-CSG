@@ -137,6 +137,7 @@ export const DAY3_ENRICHED_STEPS = [
     questions: [
       {
         scenario: '【签发人视角】你收到一张工作票，设备名称写的是"10kV城南线"（无编号），保留带电部位写"无"，危险点分析写"触电：注意安全"。你应该怎么做？',
+        weakness_tag: 'role_issuer',
         options: [
           { text: '直接签发，小问题不影响', correct: false },
           { text: '退回修改，要求补充设备编号、保留带电部位、具体预控措施', correct: true },
@@ -148,6 +149,7 @@ export const DAY3_ENRICHED_STEPS = [
       },
       {
         scenario: '【许可人视角】你到现场许可，发现工作票上写的接地线位置是"101开关线路侧"，但现场实际装设位置在"101开关母线侧"。你应该怎么做？',
+        weakness_tag: 'role_permitter',
         options: [
           { text: '位置差不多，直接许可', correct: false },
           { text: '要求重新按票面位置装设，或重新办票', correct: true },
@@ -159,6 +161,7 @@ export const DAY3_ENRICHED_STEPS = [
       },
       {
         scenario: '【负责人视角】作业过程中突然起风，风速达到8级（超过安全作业标准）。你应该怎么做？',
+        weakness_tag: 'role_leader',
         options: [
           { text: '风不大，继续干完', correct: false },
           { text: '立即停工，人员撤到安全区域', correct: true },
