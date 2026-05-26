@@ -1,16 +1,19 @@
 import { useNavigate } from 'react-router-dom'
 import StepFlow from '../components/StepFlow'
 import RoleBanner from '../components/RoleBanner'
-import { DAY2_ENRICHED_STEPS } from '../data/day2Steps'
+import { DAY2_ENRICHED_STEPS } from '../data/day2-enriched'
 import { day2Validators, day2Diagnose } from '../data/day2-validators'
 import { prepareSteps } from '../utils/prepareSteps'
 import { progressStore } from '../store/progressStore'
+import { syncQuizResults } from '../api/sync'
 
-const STEPS = prepareSteps(DAY2_ENRICHED_STEPS, {
+const PREPARED = prepareSteps(DAY2_ENRICHED_STEPS, {
   validators: day2Validators,
   diagnoseFns: { day2Diagnose },
   defaultCta: '继续',
 })
+// 将复习测验插入到 completion 之前
+const STEPS = PREPARED
 
 function Day2() {
   const navigate = useNavigate()
@@ -29,6 +32,7 @@ function Day2() {
         correctAnswer: 'see validator',
       })
     })
+    syncQuizResults(2, state)
     navigate('/')
   }
 

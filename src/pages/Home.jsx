@@ -34,10 +34,10 @@ const courseDays = [
   },
   {
     num: 5,
-    title: '数字化流程',
-    desc: '体验电子工作票全流程，汇总错题生成个人安全手册',
-    app: '数字化全流程演示 + 错题集',
-    icon: '📊',
+    title: '全流程实战',
+    desc: '从填票→签发→许可→执行→终结，走完一张工作票的完整生命周期',
+    app: '全流程模拟 + 三角色视角 + 综合决策测验',
+    icon: '🔄',
   },
 ]
 
@@ -101,9 +101,9 @@ function Home() {
         </button>
       </section>
 
-      {/* 课程模块 */}
+      {/* 学习 */}
       <section className="day-grid-section">
-        <h2 className="section-title">课程模块（5 天）</h2>
+        <h2 className="section-title">学习</h2>
         <div className="day-grid">
           {courseDays.map((day) => {
             const isFocusDay = currentRole?.focusDays.includes(day.num)
@@ -136,6 +136,33 @@ function Home() {
               </Link>
             )
           })}
+        </div>
+      </section>
+
+      {/* 复习 */}
+      <section className="day-grid-section">
+        <h2 className="section-title">复习</h2>
+        <div className="day-grid">
+          <Link to="/review-day" className="day-card">
+            <div className="day-card-header">
+              <span className="day-card-icon">📝</span>
+              <div className="day-card-tags">
+                <span className="tag tag-focus">综合测验</span>
+              </div>
+            </div>
+            <h3 className="day-card-title">综合测验</h3>
+            <p className="day-card-desc">Day 1-5 全部复习题集中练习，共13题</p>
+          </Link>
+          <Link to="/review" className="day-card">
+            <div className="day-card-header">
+              <span className="day-card-icon">🧠</span>
+              <div className="day-card-tags">
+                <span className="tag tag-focus">智能复习</span>
+              </div>
+            </div>
+            <h3 className="day-card-title">智能复习</h3>
+            <p className="day-card-desc">根据答题情况自动分析薄弱点，推送对应知识点复习</p>
+          </Link>
         </div>
       </section>
     </div>

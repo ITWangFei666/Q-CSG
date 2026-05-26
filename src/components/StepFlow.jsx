@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { SCENE_REGISTRY, ELEMENT_ICONS } from '../data/scenes'
+import { getQuestionsByTag, renderQuestion, shuffleOptions } from '../data/question-pool'
 
 /**
  * 通用步进式交互框架
@@ -504,6 +505,62 @@ function QuizQuestionStep({ step, state, onUpdate, onNext }) {
   )
 }
 
+/* ─── question pool resolution ────────────────────────
+ * Resolve questionPool config → actual questions array
+ * Support: tags array, difficulty (easy/medium/hard/mixed), count, shuffleOptions
+ */
+function resolveQuestionPool(config) {
+  const { tags = [], difficulty = 'mixed', count = 3, shuffleOptions: doShuffle = true } = config || {}
+  if (!tags || tags.length === 0) return []
+
+  let pool = []
+
+  // Gather questions from all matching tags/difficulties
+  const difficulties = difficulty === 'mixed' ? ['easy', 'medium', 'hard'] : [difficulty]
+
+  for (const tag of tags) {
+    for (const d of difficulties) {
+      const qs = getQuestionsByTag(tag, d, 10) // get all available
+      pool.push(...qs)
+    }
+  }
+
+  // Deduplicate by id
+  const seen = new Set()
+  pool = pool.filter(q => {
+    if (seen.has(q.id)) return false
+    seen.add(q.id)
+    return true
+  })
+
+  // Shuffle and pick count
+  const shuffled = pool.sort(() => Math.random() - 0.5)
+  const picked = shuffled.slice(0, Math.min(count, shuffled.length))
+
+  // Render (parameterize) and optionally shuffle options
+  return picked.map(q => {
+    let rendered = renderQuestion(q)
+    if (doShuffle) {
+      rendered = shuffleOptions(rendered)
+    }
+    // Map pool format to quiz step format
+    return {
+      id: rendered.id,
+      scenario: rendered.scenario,
+      weakness_tag: rendered.tag,
+      options: rendered.options.map(o => ({
+        text: o.text,
+        correct: o.correct,
+      })),
+      feedbackCorrect: rendered.feedbackCorrect,
+      feedbackWrong: rendered.feedbackWrong,
+    }
+  })
+}
+
+/* ─── timed-challenge with questionPool support ──────
+ * Same as quiz but with timer
+ */
 function TimedChallengeStep({ step, state, onUpdate, onNext }) {
   const [qIdx, setQIdx] = useState(0)
   const [timeLeft, setTimeLeft] = useState(step.timeLimit || 60)
@@ -512,14 +569,22 @@ function TimedChallengeStep({ step, state, onUpdate, onNext }) {
   const [showResult, setShowResult] = useState(false)
   const timerRef = useRef(null)
 
-  const currentQ = step.questions[qIdx]
-  const finished = qIdx >= step.questions.length
+  // Resolve questionPool once on mount
+  const [resolvedQuestions, setResolvedQuestions] = useState(() => {
+    if (step.questions) return step.questions
+    if (step.questionPool) return resolveQuestionPool(step.questionPool)
+    return []
+  })
+
+  const questions = resolvedQuestions
+  const finished = qIdx >= questions.length
+  const currentQ = questions[qIdx]
 
   useEffect(() => {
     if (finished) return
     if (timeLeft <= 0) {
       // 超时，标记当前题错并跳过
-      const newResults = [...results, { qid: currentQ.id, correct: false, timeout: true }]
+      const newResults = [...results, { qid: currentQ.id, correct: false, timeout: true, tag: currentQ.weakness_tag || '' }]
       setResults(newResults)
       onUpdate({ results: newResults })
       goNext()
@@ -528,7 +593,7 @@ function TimedChallengeStep({ step, state, onUpdate, onNext }) {
     timerRef.current = setTimeout(() => setTimeLeft((t) => t - 1), 1000)
     return () => clearTimeout(timerRef.current)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [timeLeft, finished])
+  }, [timeLeft, finished, qIdx, results, currentQ])
 
   const handleAnswer = (id) => {
     if (showResult) return
@@ -537,7 +602,7 @@ function TimedChallengeStep({ step, state, onUpdate, onNext }) {
     const isCorrect = id === currentQ.correct
     const newResults = [
       ...results,
-      { qid: currentQ.id, selected: id, correct: isCorrect },
+      { qid: currentQ.id, selected: id, correct: isCorrect, tag: currentQ.weakness_tag || '' },
     ]
     setResults(newResults)
     onUpdate({ results: newResults })
@@ -557,12 +622,12 @@ function TimedChallengeStep({ step, state, onUpdate, onNext }) {
       <div className="step-timed-finish">
         <h2 className="step-title">⏱️ 挑战结束</h2>
         <div className="timed-score-big">
-          {correctCount} / {step.questions.length}
+          {correctCount} / {questions.length}
         </div>
         <p className="step-body">
-          {correctCount === step.questions.length
+          {correctCount === questions.length
             ? '全对！票种判断已经稳了。'
-            : correctCount >= step.questions.length / 2
+            : correctCount >= questions.length / 2
             ? '基本掌握，注意复盘错题'
             : '需要回到上一步重新探索票种'}
         </p>
@@ -577,7 +642,7 @@ function TimedChallengeStep({ step, state, onUpdate, onNext }) {
     <div className="step-timed">
       <div className="timed-header">
         <span className="timed-question-num">
-          第 {qIdx + 1} / {step.questions.length} 题
+          第 {qIdx + 1} / {questions.length} 题
         </span>
         <span className={`timed-clock ${timeLeft <= 5 ? 'warn' : ''}`}>
           ⏱ {timeLeft}s
@@ -626,6 +691,7 @@ function TimedChallengeStep({ step, state, onUpdate, onNext }) {
 /* ─── quiz (multi-question, no timer) ───────────────────
  * @w_ke 的数据用 type: 'quiz'，questions 数组内含 options[].correct
  * 每答一题显示 ✓/✗ feedback 后 1.2s 自动跳到下一题，全部答完显示总结
+ * 支持 questionPool 配置动态从题库加载（组件挂载时解析一次）
  */
 function QuizMultiStep({ step, state, onUpdate, onNext }) {
   const [qIdx, setQIdx] = useState(state._qIdx || 0)
@@ -633,7 +699,14 @@ function QuizMultiStep({ step, state, onUpdate, onNext }) {
   const [selected, setSelected] = useState(null)
   const [showResult, setShowResult] = useState(false)
 
-  const questions = step.questions || []
+  // Resolve questionPool once on mount, store in state to persist across renders
+  const [resolvedQuestions, setResolvedQuestions] = useState(() => {
+    if (step.questions) return step.questions
+    if (step.questionPool) return resolveQuestionPool(step.questionPool)
+    return []
+  })
+
+  const questions = resolvedQuestions
   const finished = qIdx >= questions.length
   const currentQ = questions[qIdx]
 
@@ -642,7 +715,7 @@ function QuizMultiStep({ step, state, onUpdate, onNext }) {
     const q = currentQ
     const found = q.options.find((o) => (o.text ?? o.label) === optText)
     const isCorrect = found?.correct ?? false
-    const newResults = [...results, { qid: q.question ?? q.scenario, selected: optText, correct: isCorrect }]
+    const newResults = [...results, { qid: q.question ?? q.scenario, selected: optText, correct: isCorrect, tag: q.weakness_tag || '' }]
     setSelected(optText)
     setShowResult(true)
     setResults(newResults)

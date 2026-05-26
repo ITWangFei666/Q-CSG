@@ -1,0 +1,15 @@
+{
+  "name": "q-csg-backend",
+  "version": "0.2.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "migrate": "node migrate.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "pg": "^8.13.0",
+    "cors": "^2.8.5"
+  }
+}

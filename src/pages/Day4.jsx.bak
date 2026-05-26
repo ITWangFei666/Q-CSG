@@ -1,0 +1,57 @@
+import { useNavigate } from 'react-router-dom'
+import StepFlow from '../components/StepFlow'
+import RoleBanner from '../components/RoleBanner'
+import { DAY4_ENRICHED_STEPS } from '../data/day4-enriched'
+import { DAY4_REVIEW } from '../data/day4-review'
+import { prepareSteps } from '../utils/prepareSteps'
+import { progressStore } from '../store/progressStore'
+import { syncQuizResults } from '../api/sync'
+
+const PREPARED = prepareSteps(DAY4_ENRICHED_STEPS, {})
+// 将复习测验插入到 completion 之前
+const STEPS = [...PREPARED.slice(0, -1), DAY4_REVIEW, PREPARED[PREPARED.length - 1]]
+
+function Day4() {
+  const navigate = useNavigate()
+
+  const handleComplete = (state) => {
+    progressStore.markDayComplete(4)
+    // 错题：scene-action 错误记录
+    const sceneState = state['d4_s4'] || {}
+    const sceneErrors = sceneState.errors || []
+    sceneErrors.forEach((eid) => {
+      progressStore.addError({
+        day: 4,
+        question: `现场操作错误 - ${eid}`,
+        userAnswer: '操作错误',
+        correctAnswer: 'see scene error rules',
+      })
+    })
+    // 复习测验错题
+    const reviewState = state['d4_review'] || {}
+    const reviewResults = reviewState._results || []
+    reviewResults.forEach((r) => {
+      if (!r.correct) {
+        progressStore.addError({
+          day: 4,
+          question: `复习测验: ${r.qid || r.question || 'review'}`,
+          userAnswer: r.selected,
+          correctAnswer: 'see quiz config',
+        })
+      }
+    })
+    syncQuizResults(4, state)
+    navigate('/')
+  }
+
+  return (
+    <div className="day-page day-page-flow">
+      <RoleBanner dayNum={4} />
+      <div className="day-flow-container">
+        <StepFlow steps={STEPS} onComplete={handleComplete} />
+      </div>
+    </div>
+  )
+}
+
+export default Day4
