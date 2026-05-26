@@ -19,7 +19,7 @@ function Day4() {
       progressStore.addError({ day: 4, question: `现场操作错误 - ${eid}`, userAnswer: '操作错误', correctAnswer: 'see scene error rules' })
     })
     syncQuizResults(4, state)
-    navigate('/')
+    navigate('/day5')
   }
 
   return (

@@ -35,7 +35,7 @@ export const QUESTION_POOL = [
       { text: '不需要票', correct: false }
     ],
     feedbackCorrect: '正确。焊接产生火花，必须办理动火工作票。在变电站内属于一级动火，需要更严格的审批和专人消防监护。',
-    feedbackWrong: '焊接、切割、打磨等产生火花的工作，无论工作量大小，都必须办理动火工作票。很多班组觉得"就焊一下"不用办票——这是最常见的违章行为。'
+    feedbackWrong: '焊接、切割、打磨等产生火花的工作，无论工作量大小，都必须办理动火工作票。很多班组觉得“就焊一下”不用办票——这是最常见的违章行为。'
   },
   // medium: 需要时间判断 / 多条件判断
   {
@@ -92,15 +92,15 @@ export const QUESTION_POOL = [
     tag: 'ticket_type',
     difficulty: 'hard',
     day: 1,
-    scenario: '以下关于"两票三制"的说法，哪一个是错误的？',
+    scenario: '以下关于“两票三制”的说法，哪一个是错误的？',
     options: [
       { text: '两票指工作票和操作票', correct: false },
       { text: '三制指交接班制、巡回检查制、设备定期试验轮换制', correct: false },
       { text: '工作票管设备，操作票管人', correct: true },
-      { text: '任何人为责任事故都能在"两票三制"执行中找到原因', correct: false }
+      { text: '任何人为责任事故都能在“两票三制”执行中找到原因', correct: false }
     ],
-    feedbackCorrect: '正确。工作票管"人"（谁、在哪、干什么、怎么保证安全），操作票管"设备"（开关怎么拉、顺序是什么）。C选项说反了。',
-    feedbackWrong: '工作票管"人"，操作票管"设备"。C选项说反了。'
+    feedbackCorrect: '正确。工作票管“人”（谁、在哪、干什么、怎么保证安全），操作票管“设备”（开关怎么拉、顺序是什么）。C选项说反了。',
+    feedbackWrong: '工作票管“人”，操作票管“设备”。C选项说反了。'
   },
 
   // ==================== device_naming（设备双重命名）====================
@@ -110,14 +110,14 @@ export const QUESTION_POOL = [
     tag: 'device_naming',
     difficulty: 'easy',
     day: 2,
-    scenario: '以下哪个设备名称符合"双重命名"规范？',
+    scenario: '以下哪个设备名称符合“双重命名”规范？',
     options: [
       { text: '城南线', correct: false },
       { text: '10kV城南线', correct: false },
       { text: '10kV城南线101开关', correct: true },
       { text: '101开关', correct: false }
     ],
-    feedbackCorrect: '正确。双重命名=电压等级+名称+编号，"10kV城南线101开关"三者齐全。',
+    feedbackCorrect: '正确。双重命名=电压等级+名称+编号，“10kV城南线101开关”三者齐全。',
     feedbackWrong: '设备名称必须包含：电压等级（10kV）+名称（城南线）+编号（101开关），缺一不可。'
   },
   {
@@ -125,7 +125,7 @@ export const QUESTION_POOL = [
     tag: 'device_naming',
     difficulty: 'easy',
     day: 2,
-    scenario: '"${voltage}kV${line}线${num}开关"这个设备名称中，"${voltage}kV"代表什么？',
+    scenario: '“${voltage}kV${line}线${num}开关”这个设备名称中，“${voltage}kV”代表什么？',
     params: { voltage: ['10','35','110'], line: ['城南','城北'], num: ['101','102'] },
     options: [
       { text: '电压等级', correct: true },
@@ -142,7 +142,7 @@ export const QUESTION_POOL = [
     tag: 'device_naming',
     difficulty: 'medium',
     day: 2,
-    scenario: '工作票上设备名称写"${line}线${num}开关"（缺电压等级），许可人会遇到什么问题？',
+    scenario: '工作票上设备名称写“${line}线${num}开关”（缺电压等级），许可人会遇到什么问题？',
     params: { line: ['城南','城北'], num: ['101','102'] },
     options: [
       { text: '没什么问题，大家都知道这条线', correct: false },
@@ -150,8 +150,8 @@ export const QUESTION_POOL = [
       { text: '只需要问一下填票人就行', correct: false },
       { text: '可以省略，编号足够唯一', correct: false }
     ],
-    feedbackCorrect: '正确。缺少电压等级，许可人无法确认是哪一级电网的设备，可能走到相邻的带电间隔——这是真实发生过的致死事故原因。',
-    feedbackWrong: '电压等级是确认设备的关键信息。同一编号可能存在于不同电压等级的电网中。不能省略，不能"问一下就行"。'
+    feedbackCorrect: '正确。缺少电压等级，许可人无法确认是哪一级电网的设备，可能走到相邻的带电间隔——这是真实发生过的恶性事故原因。',
+    feedbackWrong: '电压等级是确认设备的关键信息。同一编号可能存在于不同电压等级的电网中。不能省略，不能“问一下就行”。'
   },
   {
     id: 'q_dn_m2',
@@ -165,8 +165,8 @@ export const QUESTION_POOL = [
       { text: '更换10kV城南线#16杆A相绝缘子', correct: true },
       { text: '城南线消缺', correct: false }
     ],
-    feedbackCorrect: '正确。工作任务必须具体到：设备+位置+具体内容。"更换10kV城南线#16杆A相绝缘子"三者齐全。',
-    feedbackWrong: '"处理缺陷""更换绝缘子"都太笼统。规范写法必须包含：设备（10kV城南线）、位置（#16杆A相）、具体内容（更换绝缘子）。'
+    feedbackCorrect: '正确。工作任务必须具体到：设备+位置+具体内容。“更换10kV城南线#16杆A相绝缘子”三者齐全。',
+    feedbackWrong: '“处理缺陷”“更换绝缘子”都太笼统。规范写法必须包含：设备（10kV城南线）、位置（#16杆A相）、具体内容（更换绝缘子）。'
   },
   // hard: 综合判断 / 多设备命名
   {
@@ -216,22 +216,22 @@ export const QUESTION_POOL = [
       { text: '触电：谨慎操作', correct: false }
     ],
     feedbackCorrect: '正确。危险点预控必须包含三个要素：做什么（动作）、怎么做（方法）、做到什么标准（指标）。',
-    feedbackWrong: '"注意安全""小心""谨慎"都是口号，不是预控措施。必须写具体动作+方法+标准。'
+    feedbackWrong: '“注意安全”“小心”“谨慎”都是口号，不是预控措施。必须写具体动作+方法+标准。'
   },
   {
     id: 'q_dp_e2',
     tag: 'danger_point',
     difficulty: 'easy',
     day: 2,
-    scenario: '"高处坠落：系安全带、使用脚扣、设专人监护"这个危险点预控写得好吗？',
+    scenario: '“高处坠落：系安全带、使用脚扣、设专人监护”这个危险点预控写得好吗？',
     options: [
       { text: '不好，太啰嗦', correct: false },
       { text: '好，包含动作+方法+标准', correct: true },
-      { text: '不好，应该写"小心"', correct: false },
+      { text: '不好，应该写“小心”', correct: false },
       { text: '一般，可有可无', correct: false }
     ],
-    feedbackCorrect: '正确。"系安全带"（动作）+"使用脚扣"（方法）+"设专人监护"（标准）= 三要素齐全。',
-    feedbackWrong: '危险点预控不是越简单越好。必须包含动作+方法+标准三要素，不能写"小心""注意安全"等口号。'
+    feedbackCorrect: '正确。“系安全带”（动作）+“使用脚扣”（方法）+“设专人监护”（标准）= 三要素齐全。',
+    feedbackWrong: '危险点预控不是越简单越好。必须包含动作+方法+标准三要素，不能写“小心”“注意安全”等口号。'
   },
   // medium: 场景化判断
   {
@@ -247,22 +247,22 @@ export const QUESTION_POOL = [
       { text: '物体打击：戴安全帽、设警戒区', correct: false },
       { text: '车辆伤害：设交通警示标志', correct: false }
     ],
-    feedbackCorrect: '正确。"系安全带"只有动作，缺少方法（如使用脚扣）和标准（如专人监护）。预控措施必须包含三要素。',
-    feedbackWrong: 'B选项只有"系安全带"一个动作，缺少方法和标准。其他选项都更完整。'
+    feedbackCorrect: '正确。“系安全带”只有动作，缺少方法（如使用脚扣）和标准（如专人监护）。预控措施必须包含三要素。',
+    feedbackWrong: 'B选项只有“系安全带”一个动作，缺少方法和标准。其他选项都更完整。'
   },
   {
     id: 'q_dp_m2',
     tag: 'danger_point',
     difficulty: 'medium',
     day: 2,
-    scenario: '以下哪个危险点预控写了"三要素"（动作+方法+标准）？',
+    scenario: '以下哪个危险点预控写了“三要素”（动作+方法+标准）？',
     options: [
       { text: '触电：注意安全', correct: false },
       { text: '触电：停电后验电、装设接地线、保持0.7m安全距离', correct: true },
       { text: '触电：小心', correct: false },
       { text: '触电：戴绝缘手套', correct: false }
     ],
-    feedbackCorrect: '正确。"停电后验电"（动作）+"装设接地线"（方法）+"保持0.7m安全距离"（标准）= 三要素齐全。',
+    feedbackCorrect: '正确。“停电后验电”（动作）+“装设接地线”（方法）+“保持0.7m安全距离”（标准）= 三要素齐全。',
     feedbackWrong: 'A和C是口号。D只有动作（戴绝缘手套），缺少方法和标准。'
   },
   // hard: 补全危险点 / 多危险点识别
@@ -287,7 +287,7 @@ export const QUESTION_POOL = [
     tag: 'danger_point',
     difficulty: 'hard',
     day: 2,
-    scenario: '工作票上已写"触电：停电后验电、装设接地线"。还缺少什么？',
+    scenario: '工作票上已写“触电：停电后验电、装设接地线”。还缺少什么？',
     options: [
       { text: '已经完整了', correct: false },
       { text: '缺少安全距离标准', correct: true },
@@ -295,7 +295,7 @@ export const QUESTION_POOL = [
       { text: '缺少作业时间', correct: false }
     ],
     feedbackCorrect: '正确。预控措施写到了动作（验电）和方法（装设接地线），但缺少标准（保持多少米安全距离）。没有标准就无法检查是否做到位。',
-    feedbackWrong: '危险点预控三要素：动作+方法+标准。本题有动作和方法，但缺少"保持0.7m安全距离"这样的量化标准。'
+    feedbackWrong: '危险点预控三要素：动作+方法+标准。本题有动作和方法，但缺少“保持0.7m安全距离”这样的量化标准。'
   },
 
   // ==================== charged_zone（保留带电部位）====================
@@ -305,15 +305,15 @@ export const QUESTION_POOL = [
     tag: 'charged_zone',
     difficulty: 'easy',
     day: 2,
-    scenario: '保留带电部位栏可以简单写"无"吗？',
+    scenario: '保留带电部位栏可以简单写“无”吗？',
     options: [
       { text: '可以，现场确实没有带电设备', correct: false },
       { text: '不可以，必须具体描述确认过程', correct: true },
       { text: '可以，但最好写一下', correct: false },
-      { text: '看情况，简单作业可以写"无"', correct: false }
+      { text: '看情况，简单作业可以写“无”', correct: false }
     ],
-    feedbackCorrect: '正确。无论现场看起来有没有带电设备，都不能简单写"无"。必须具体描述：同杆架设线路、邻近间隔、交叉跨越等。',
-    feedbackWrong: '不能写"无"！这是工作票中最容易遗漏、最致命的一栏。必须具体描述邻近带电设备。'
+    feedbackCorrect: '正确。无论现场看起来有没有带电设备，都不能简单写“无”。必须具体描述：同杆架设线路、邻近间隔、交叉跨越等。',
+    feedbackWrong: '不能写“无”！这是工作票中最容易遗漏、最致命的一栏。必须具体描述邻近带电设备。'
   },
   {
     id: 'q_cz_e2',
@@ -344,15 +344,15 @@ export const QUESTION_POOL = [
       { text: '${voltage}kV${line2}线与${line1}线同杆架设，${line2}线带电运行', correct: true },
       { text: '同杆架设线路带电', correct: false }
     ],
-    feedbackCorrect: '正确。必须具体写明：电压等级+线路名称+关系（同杆架设）+状态（带电运行）。不能简单写"无"或"同杆架设线路带电"。',
-    feedbackWrong: '保留带电部位必须具体：电压等级+线路名称+关系+状态。"无"是致命错误；"${line2}线带电运行"缺少电压等级和关系描述；"同杆架设线路带电"不够具体。'
+    feedbackCorrect: '正确。必须具体写明：电压等级+线路名称+关系（同杆架设）+状态（带电运行）。不能简单写“无”或“同杆架设线路带电”。',
+    feedbackWrong: '保留带电部位必须具体：电压等级+线路名称+关系+状态。“无”是致命错误；“${line2}线带电运行”缺少电压等级和关系描述；“同杆架设线路带电”不够具体。'
   },
   {
     id: 'q_cz_m2',
     tag: 'charged_zone',
     difficulty: 'medium',
     day: 2,
-    scenario: '工作票上保留带电部位写"${voltage}kV${line}线同杆架设，带电运行"，许可人到现场发现还有一条交叉跨越的110kV高压线。这说明什么问题？',
+    scenario: '工作票上保留带电部位写“${voltage}kV${line}线同杆架设，带电运行”，许可人到现场发现还有一条交叉跨越的110kV高压线。这说明什么问题？',
     params: { voltage: ['10','35'], line: ['城南','城北'] },
     options: [
       { text: '没什么问题，交叉跨越线不影响', correct: false },
@@ -385,15 +385,15 @@ export const QUESTION_POOL = [
     tag: 'charged_zone',
     difficulty: 'hard',
     day: 2,
-    scenario: '填票人在保留带电部位栏写了"经现场勘察，无保留带电部位"。这种说法正确吗？',
+    scenario: '填票人在保留带电部位栏写了“经现场勘察，无保留带电部位”。这种说法正确吗？',
     options: [
       { text: '正确，写明了勘察过程', correct: false },
-      { text: '不正确，应该写"无"更简洁', correct: false },
+      { text: '不正确，应该写“无”更简洁', correct: false },
       { text: '不正确，必须逐项列出确认的内容', correct: true },
-      { text: '正确，比简单写"无"好', correct: false }
+      { text: '正确，比简单写“无”好', correct: false }
     ],
-    feedbackCorrect: '正确。必须逐项列出确认的内容：同杆架设线路✓、邻近间隔✓、交叉跨越✓、电缆沟✓、低压反送电✓。只有逐项确认并列出，才能证明真的"无"。',
-    feedbackWrong: '"经现场勘察"是过程描述，不是结果确认。必须逐项列出：同杆架设、邻近间隔、交叉跨越、电缆沟、低压反送电——每项都确认无，才能写"无"。'
+    feedbackCorrect: '正确。必须逐项列出确认的内容：同杆架设线路✓、邻近间隔✓、交叉跨越✓、电缆沟✓、低压反送电✓。只有逐项确认并列出，才能证明真的“无”。',
+    feedbackWrong: '“经现场勘察”是过程描述，不是结果确认。必须逐项列出：同杆架设、邻近间隔、交叉跨越、电缆沟、低压反送电——每项都确认无，才能写“无”。'
   },
 
   // ==================== role_issuer（签发人职责）====================
@@ -403,15 +403,15 @@ export const QUESTION_POOL = [
     tag: 'role_issuer',
     difficulty: 'easy',
     day: 3,
-    scenario: '签发人发现工作票上保留带电部位写"无"，但现场实际有同杆架设的带电线路。签发人应该怎么做？',
+    scenario: '签发人发现工作票上保留带电部位写“无”，但现场实际有同杆架设的带电线路。签发人应该怎么做？',
     options: [
       { text: '先签再说，小问题', correct: false },
       { text: '退回修改，要求补充保留带电部位', correct: true },
       { text: '口头提醒填票人', correct: false },
       { text: '自己修改后签发', correct: false }
     ],
-    feedbackCorrect: '正确。签发人有"拒签权"。保留带电部位写"无"但现场实际有 = 致命错误，必须退回修改。签发人签字=担保。',
-    feedbackWrong: '签发人的签字=担保。票面有致命缺陷还签发，发生事故时签发人负主要责任。正确做法是退回修改，不能"差不多就行"。'
+    feedbackCorrect: '正确。签发人有“拒签权”。保留带电部位写“无”但现场实际有 = 致命错误，必须退回修改。签发人签字=担保。',
+    feedbackWrong: '签发人的签字=担保。票面有致命缺陷还签发，发生事故时签发人负主要责任。正确做法是退回修改，不能“差不多就行”。'
   },
   {
     id: 'q_ri_e2',
@@ -421,12 +421,12 @@ export const QUESTION_POOL = [
     scenario: '签发人的核心职责是什么？',
     options: [
       { text: '签字走流程', correct: false },
-      { text: '审"票面上的安全"', correct: true },
+      { text: '审“票面上的安全”', correct: true },
       { text: '到现场核对措施', correct: false },
       { text: '监督作业过程', correct: false }
     ],
-    feedbackCorrect: '正确。签发人审的是"票面上的安全"——安全措施对不对、完整不完整。现场核对是许可人的职责，监督作业是负责人的职责。',
-    feedbackWrong: '签发人审"票面上的安全"，许可人审"现场真的安全"，负责人决定"怎么干完、人能不能全回来"。三种人职责不同。'
+    feedbackCorrect: '正确。签发人审的是“票面上的安全”——安全措施对不对、完整不完整。现场核对是许可人的职责，监督作业是负责人的职责。',
+    feedbackWrong: '签发人审“票面上的安全”，许可人审“现场真的安全”，负责人决定“怎么干完、人能不能全回来”。三种人职责不同。'
   },
   // medium: 场景判断
   {
@@ -434,7 +434,7 @@ export const QUESTION_POOL = [
     tag: 'role_issuer',
     difficulty: 'medium',
     day: 3,
-    scenario: '签发人收到一张工作票：工作任务写"处理缺陷"（不具体），安全措施只写"断开开关"（没写刀闸），人员写"等3人"（没列名）。签发人应该怎么做？',
+    scenario: '签发人收到一张工作票：工作任务写“处理缺陷”（不具体），安全措施只写“断开开关”（没写刀闸），人员写“等3人”（没列名）。签发人应该怎么做？',
     options: [
       { text: '小问题，直接签', correct: false },
       { text: '退回修改，列出所有问题', correct: true },
@@ -442,7 +442,7 @@ export const QUESTION_POOL = [
       { text: '只签这一次，下次注意', correct: false }
     ],
     feedbackCorrect: '正确。工作任务不具体+安全措施不完整+人员未列名，三项都是致命错误。必须退回修改，逐项列出问题。',
-    feedbackWrong: '签发人签字=担保。任何一项安全措施不完整都可能导致事故。不能"只签这一次"，不能"口头提醒"，必须退回修改。'
+    feedbackWrong: '签发人签字=担保。任何一项安全措施不完整都可能导致事故。不能“只签这一次”，不能“口头提醒”，必须退回修改。'
   },
   {
     id: 'q_ri_m2',
@@ -457,7 +457,7 @@ export const QUESTION_POOL = [
       { text: '危险点写了具体预控措施', correct: false }
     ],
     feedbackCorrect: '正确。工作任务描述不清 = 不知道要干什么 = 无法评估风险 = 必须拒签。其他三项都是合格的写法。',
-    feedbackWrong: '签发人必须拒签的情况包括：工作任务不清、安全措施遗漏、带电部位写"无"、人员资质不够、时间冲突、恶劣天气。'
+    feedbackWrong: '签发人必须拒签的情况包括：工作任务不清、安全措施遗漏、带电部位写“无”、人员资质不够、时间冲突、恶劣天气。'
   },
   // hard: 综合判断
   {
@@ -465,30 +465,30 @@ export const QUESTION_POOL = [
     tag: 'role_issuer',
     difficulty: 'hard',
     day: 3,
-    scenario: '签发人审核时发现：工作任务清楚、设备名称完整、安全措施写了开关+刀闸，但危险点分析写"触电：注意安全"。此时最恰当的做法是？',
+    scenario: '签发人审核时发现：工作任务清楚、设备名称完整、安全措施写了开关+刀闸，但危险点分析写“触电：注意安全”。此时最恰当的做法是？',
     options: [
       { text: '直接签发，其他都合格', correct: false },
       { text: '退回修改，要求重写危险点分析', correct: true },
       { text: '签的时候口头提醒一下', correct: false },
       { text: '自己帮填票人改好再签', correct: false }
     ],
-    feedbackCorrect: '正确。"注意安全"是口号不是措施。危险点分析是工作票最核心的部分之一，直接关系到作业人员的生死。不能签发。',
-    feedbackWrong: '签发人不能"差不多就行"。危险点分析写"注意安全" = 没有预控措施 = 作业人员不知道具体该怎么做 = 必须退回修改。'
+    feedbackCorrect: '正确。“注意安全”是口号不是措施。危险点分析是工作票最核心的部分之一，直接关系到作业人员的安危。不能签发。',
+    feedbackWrong: '签发人不能“差不多就行”。危险点分析写“注意安全” = 没有预控措施 = 作业人员不知道具体该怎么做 = 必须退回修改。'
   },
   {
     id: 'q_ri_h2',
     tag: 'role_issuer',
     difficulty: 'hard',
     day: 3,
-    scenario: '签发人连续3次退回同一张工作票，填票人抱怨"签发人故意找茬"。签发人应该怎么做？',
+    scenario: '签发人连续3次退回同一张工作票，填票人抱怨“签发人故意找茬”。签发人应该怎么做？',
     options: [
       { text: '算了，这次先签，下次再严格要求', correct: false },
       { text: '继续退回，直到所有问题改对', correct: true },
       { text: '降低标准，签了吧', correct: false },
       { text: '让管理层来处理', correct: false }
     ],
-    feedbackCorrect: '正确。签发人的标准是"票面安全"，不是"人情"。退回3次说明填票人态度或能力有问题，应该继续退回，并考虑是否需要培训。',
-    feedbackWrong: '签发人的签字=担保=法律责任。不能因"怕找茬""怕伤感情"而降低标准。拒签不是找茬，是保命。'
+    feedbackCorrect: '正确。签发人的标准是“票面安全”，不是“人情”。退回3次说明填票人态度或能力有问题，应该继续退回，并考虑是否需要培训。',
+    feedbackWrong: '签发人的签字=担保=法律责任。不能因“怕找茬”“怕伤感情”而降低标准。拒签不是找茬，是保命。'
   },
 
   // ==================== role_permitter（许可人职责）====================
@@ -501,12 +501,12 @@ export const QUESTION_POOL = [
     scenario: '许可人的核心职责是什么？',
     options: [
       { text: '签字走流程', correct: false },
-      { text: '审"现场真的安全"', correct: true },
+      { text: '审“现场真的安全”', correct: true },
       { text: '决定工作怎么干', correct: false },
       { text: '填写工作票', correct: false }
     ],
-    feedbackCorrect: '正确。许可人审的是"现场真的安全"——拿着票，一项一项到现场核对，票面写的和现场做的是否一致。',
-    feedbackWrong: '许可人审"现场真的安全"，签发人审"票面上的安全"，负责人决定"怎么干完"。三种人职责不同。'
+    feedbackCorrect: '正确。许可人审的是“现场真的安全”——拿着票，一项一项到现场核对，票面写的和现场做的是否一致。',
+    feedbackWrong: '许可人审“现场真的安全”，签发人审“票面上的安全”，负责人决定“怎么干完”。三种人职责不同。'
   },
   {
     id: 'q_rp_e2',
@@ -521,7 +521,7 @@ export const QUESTION_POOL = [
       { text: '让负责人自己决定', correct: false }
     ],
     feedbackCorrect: '正确。票面与现场必须完全一致。接地线位置不同意味着停电范围不同。许可人必须要求重新按票面执行，或重新办理工作票。',
-    feedbackWrong: '许可人审的是"现场真的安全"。票面与现场不符 = 安全措施未落实。许可人没有权力修改票面，只能要求重新执行或重新办票。'
+    feedbackWrong: '许可人审的是“现场真的安全”。票面与现场不符 = 安全措施未落实。许可人没有权力修改票面，只能要求重新执行或重新办票。'
   },
   // medium: 场景判断
   {
@@ -536,7 +536,7 @@ export const QUESTION_POOL = [
       { text: '让负责人自己挂', correct: false },
       { text: '口头提醒挂标示牌', correct: false }
     ],
-    feedbackCorrect: '正确。标示牌是防止误合闸的重要措施，必须挂好才能许可。不能"不重要""口头提醒"，必须落实后才能许可。',
+    feedbackCorrect: '正确。标示牌是防止误合闸的重要措施，必须挂好才能许可。不能“不重要”“口头提醒”，必须落实后才能许可。',
     feedbackWrong: '七步安全措施缺一不可：停电→断刀闸→验电→接地→挂牌→遮栏。任何一项未落实都不能许可。'
   },
   {
@@ -552,7 +552,7 @@ export const QUESTION_POOL = [
       { text: '先许可，等人来了再补签', correct: false }
     ],
     feedbackCorrect: '正确。人员未全部到场 = 安全交底可能不完整 = 作业风险增加。必须要求人员全部到场后才能许可。',
-    feedbackWrong: '许可人必须核查"工作负责人和班组成员是否全部到场"。人员不足可能导致安全交底不完整、监护不到位。'
+    feedbackWrong: '许可人必须核查“工作负责人和班组成员是否全部到场”。人员不足可能导致安全交底不完整、监护不到位。'
   },
   // hard: 综合判断
   {
@@ -560,7 +560,7 @@ export const QUESTION_POOL = [
     tag: 'role_permitter',
     difficulty: 'hard',
     day: 3,
-    scenario: '许可人核对时发现：票上写"保留带电部位：10kV城北线同杆架设带电"，但现场实际还有一条交叉跨越的110kV线路。许可人应该怎么做？',
+    scenario: '许可人核对时发现：票上写“保留带电部位：10kV城北线同杆架设带电”，但现场实际还有一条交叉跨越的110kV线路。许可人应该怎么做？',
     options: [
       { text: '交叉跨越线距离远，不影响', correct: false },
       { text: '拒绝许可，要求重新办票补充保留带电部位', correct: true },
@@ -575,15 +575,15 @@ export const QUESTION_POOL = [
     tag: 'role_permitter',
     difficulty: 'hard',
     day: 3,
-    scenario: '天气突变开始下大雨，许可人认为不适合继续作业，但工作负责人说"再干一会儿就完了"。许可人应该怎么做？',
+    scenario: '天气突变开始下大雨，许可人认为不适合继续作业，但工作负责人说“再干一会儿就完了”。许可人应该怎么做？',
     options: [
       { text: '尊重负责人意见，继续许可', correct: false },
       { text: '拒绝许可，天气突变必须停工', correct: true },
       { text: '请示签发人后再决定', correct: false },
       { text: '让双方协商决定', correct: false }
     ],
-    feedbackCorrect: '正确。许可人有"拒绝许可权"，天气突变是明确的拒绝许可条件。不能因为"再干一会儿"而妥协。',
-    feedbackWrong: '许可人有独立的"拒绝许可权"，不需要请示任何人。天气突变 = 环境条件不满足 = 必须拒绝许可。'
+    feedbackCorrect: '正确。许可人有“拒绝许可权”，天气突变是明确的拒绝许可条件。不能因为“再干一会儿”而妥协。',
+    feedbackWrong: '许可人有独立的“拒绝许可权”，不需要请示任何人。天气突变 = 环境条件不满足 = 必须拒绝许可。'
   },
 
   // ==================== role_leader（负责人职责）====================
@@ -596,12 +596,12 @@ export const QUESTION_POOL = [
     scenario: '工作负责人的核心职责是什么？',
     options: [
       { text: '决定工作能不能干', correct: false },
-      { text: '决定"怎么干完、人能不能全回来"', correct: true },
+      { text: '决定“怎么干完、人能不能全回来”', correct: true },
       { text: '审核票面安全', correct: false },
       { text: '到现场核对措施', correct: false }
     ],
-    feedbackCorrect: '正确。负责人决定"怎么干完、怎么让人全回来"。开工前、作业中、收工后三个阶段各有核心任务。',
-    feedbackWrong: '负责人决定"怎么干完、人能不能全回来"，签发人审"票面"，许可人审"现场"。'
+    feedbackCorrect: '正确。负责人决定“怎么干完、怎么让人全回来”。开工前、作业中、收工后三个阶段各有核心任务。',
+    feedbackWrong: '负责人决定“怎么干完、人能不能全回来”，签发人审“票面”，许可人审“现场”。'
   },
   {
     id: 'q_rl_e2',
@@ -615,8 +615,8 @@ export const QUESTION_POOL = [
       { text: '请示领导后再决定', correct: false },
       { text: '加快速度，赶在雨大之前干完', correct: false }
     ],
-    feedbackCorrect: '正确。负责人有"停工权"，不需要请示任何人。"我觉得不安全"就是充分的停工理由。雷雨天气远超安全标准。',
-    feedbackWrong: '负责人的"停工权"是法律赋予的，不需要理由、不需要请示。天气突变必须立即停工。'
+    feedbackCorrect: '正确。负责人有“停工权”，不需要请示任何人。“我觉得不安全”就是充分的停工理由。雷雨天气远超安全标准。',
+    feedbackWrong: '负责人的“停工权”是法律赋予的，不需要理由、不需要请示。天气突变必须立即停工。'
   },
   // medium: 场景判断
   {
@@ -631,8 +631,8 @@ export const QUESTION_POOL = [
       { text: '记在心里，收工后再说', correct: false },
       { text: '让许可人来处理', correct: false }
     ],
-    feedbackCorrect: '正确。未戴安全帽 = 安全措施不到位 = 必须立即停工整改。不能"提醒一下继续"或"收工后再说"。',
-    feedbackWrong: '任何安全措施不到位都必须立即停工。"提醒一下继续"等于默许违章，发生事故时负责人负主要责任。'
+    feedbackCorrect: '正确。未戴安全帽 = 安全措施不到位 = 必须立即停工整改。不能“提醒一下继续”或“收工后再说”。',
+    feedbackWrong: '任何安全措施不到位都必须立即停工。“提醒一下继续”等于默许违章，发生事故时负责人负主要责任。'
   },
   {
     id: 'q_rl_m2',
@@ -646,7 +646,7 @@ export const QUESTION_POOL = [
       { text: '先签字终结，让人自己回来', correct: false },
       { text: '通知许可人一起找', correct: false }
     ],
-    feedbackCorrect: '正确。收工必须人员清点，少1人 = 可能还在设备上/杆塔上/危险区域。必须立即寻找，不能"等等看""先签字"。',
+    feedbackCorrect: '正确。收工必须人员清点，少1人 = 可能还在设备上/杆塔上/危险区域。必须立即寻找，不能“等等看”“先签字”。',
     feedbackWrong: '收工人员清点是负责人的核心职责。少1人绝不能先签字终结，必须确认所有人安全撤离。'
   },
   // hard: 综合判断
@@ -655,15 +655,15 @@ export const QUESTION_POOL = [
     tag: 'role_leader',
     difficulty: 'hard',
     day: 3,
-    scenario: '作业过程中，负责人觉得"有点不对劲"——说不清具体哪里不对，但就是感觉不安全。此时最正确的做法是？',
+    scenario: '作业过程中，负责人觉得“有点不对劲”——说不清具体哪里不对，但就是感觉不安全。此时最正确的做法是？',
     options: [
       { text: '可能是错觉，继续观察', correct: false },
       { text: '立即停工，排查后再决定是否继续', correct: true },
       { text: '问问其他成员有没有同样感觉', correct: false },
       { text: '先干完这点，再检查', correct: false }
     ],
-    feedbackCorrect: '正确。负责人的"停工权"不需要具体理由。"我觉得不安全"就是充分的停工理由。宁可停工后发现是虚惊，也不能冒险继续。',
-    feedbackWrong: '"感觉不安全"就是理由。经验丰富的负责人往往有直觉判断能力，这种直觉来自长期积累的安全意识。必须信任直觉，立即停工。'
+    feedbackCorrect: '正确。负责人的“停工权”不需要具体理由。“我觉得不安全”就是充分的停工理由。宁可停工后发现是虚惊，也不能冒险继续。',
+    feedbackWrong: '“感觉不安全”就是理由。经验丰富的负责人往往有直觉判断能力，这种直觉来自长期积累的安全意识。必须信任直觉，立即停工。'
   },
   {
     id: 'q_rl_h2',
@@ -677,8 +677,8 @@ export const QUESTION_POOL = [
       { text: '口头汇报一下，继续干', correct: false },
       { text: '让签发人过来确认', correct: false }
     ],
-    feedbackCorrect: '正确。超出工作票范围的工作必须重新办票。"顺便"更换 = 无票作业 = 严重违章。',
-    feedbackWrong: '工作票是"操作指令书"，超出票面的工作 = 无票作业。必须停止当前工作，重新办理工作票。'
+    feedbackCorrect: '正确。超出工作票范围的工作必须重新办票。“顺便”更换 = 无票作业 = 严重违章。',
+    feedbackWrong: '工作票是“操作指令书”，超出票面的工作 = 无票作业。必须停止当前工作，重新办理工作票。'
   },
 
   // ==================== safety_seq（安全措施顺序）====================
@@ -773,7 +773,7 @@ export const QUESTION_POOL = [
       { text: '接地线顺序错了', correct: false }
     ],
     feedbackCorrect: '正确。未验电就装设接地线 = 假设无电但实际带电 = 带电接地会造成三相短路 + 电弧烧伤 + 设备损坏。这是最危险的操作。',
-    feedbackWrong: '虽然A、C、D都很危险，但B"未验电就接地"是最危险的——带电接地会造成三相短路，产生巨大电弧，可能导致爆炸和人员伤亡。'
+    feedbackWrong: '虽然A、C、D都很危险，但B“未验电就接地”是最危险的——带电接地会造成三相短路，产生巨大电弧，可能导致爆炸和人员伤亡。'
   },
 
   // ==================== ground_wire（接地线操作）====================
@@ -822,7 +822,7 @@ export const QUESTION_POOL = [
       { text: '对，只要最后接地端也接上就行', correct: false },
       { text: '无所谓，顺序不重要', correct: false }
     ],
-    feedbackCorrect: '正确。必须先接接地端（杆塔接地极），后接导体端（导线）。顺序不能乱，不能"省事""无所谓"。',
+    feedbackCorrect: '正确。必须先接接地端（杆塔接地极），后接导体端（导线）。顺序不能乱，不能“省事”“无所谓”。',
     feedbackWrong: '顺序错了就是送命。先接导体端时，如果突然来电，电流将通过人体流入大地。必须先接接地端。'
   },
   {
@@ -846,7 +846,7 @@ export const QUESTION_POOL = [
     tag: 'ground_wire',
     difficulty: 'hard',
     day: 4,
-    scenario: '某作业人员嫌验电器太重没带，凭经验认为"开关和刀闸都断了，肯定没电"，直接开始装设接地线。以下说法正确的是？',
+    scenario: '某作业人员嫌验电器太重没带，凭经验认为“开关和刀闸都断了，肯定没电”，直接开始装设接地线。以下说法正确的是？',
     options: [
       { text: '有经验的人可以凭经验判断', correct: false },
       { text: '必须验电，经验不能代替验电', correct: true },
@@ -854,7 +854,7 @@ export const QUESTION_POOL = [
       { text: '接地线可以代替验电', correct: false }
     ],
     feedbackCorrect: '正确。经验不能代替验电。开关和刀闸可能指示错误、可能反送电、可能存在感应电。必须验电确认无电后才能接地。',
-    feedbackWrong: '"开关和刀闸断了就等于没电"是致命错误。可能的原因：指示错误、反送电、感应电。经验不能代替规程，必须验电。'
+    feedbackWrong: '“开关和刀闸断了就等于没电”是致命错误。可能的原因：指示错误、反送电、感应电。经验不能代替规程，必须验电。'
   },
   {
     id: 'q_gw_h2',
@@ -886,7 +886,7 @@ export const QUESTION_POOL = [
       { text: '自建系统，从零开发', correct: false },
       { text: '全员推广，一次性切换', correct: false }
     ],
-    feedbackCorrect: '正确。数字化需要"先电子化，再智能化"。没有数据基础，AI就是空中楼阁。',
+    feedbackCorrect: '正确。数字化需要“先电子化，再智能化”。没有数据基础，AI就是空中楼阁。',
     feedbackWrong: '一步到位上AI没有数据基础；自建系统周期长风险大；全员推广容易出问题。正确路径：先电子化→积累数据→逐步智能化。'
   },
   {
@@ -902,7 +902,7 @@ export const QUESTION_POOL = [
       { text: '纸质票应该全部销毁', correct: false }
     ],
     feedbackCorrect: '正确。数字化是工具，不是替代。它提升了规范性和效率，但现场安全最终取决于人的安全意识和责任心。',
-    feedbackWrong: '数字化不能替代人的安全意识和责任心。它是"放大器"——好的管理更好，坏的管理更坏。'
+    feedbackWrong: '数字化不能替代人的安全意识和责任心。它是“放大器”——好的管理更好，坏的管理更坏。'
   },
   // medium: 实施判断
   {
@@ -910,29 +910,29 @@ export const QUESTION_POOL = [
     tag: 'digital_path',
     difficulty: 'medium',
     day: 5,
-    scenario: '某班组连续3张票出现"保留带电部位遗漏"的错误。数字化系统最有效的应对措施是？',
+    scenario: '某班组连续3张票出现“保留带电部位遗漏”的错误。数字化系统最有效的应对措施是？',
     options: [
       { text: '罚款', correct: false },
       { text: '系统自动预警，提示该线路同杆架设信息', correct: true },
       { text: '批评班组长', correct: false },
       { text: '增加人工审核', correct: false }
     ],
-    feedbackCorrect: '正确。数字化系统的优势是"自动预警"——基于数据识别高频错误，在填票时实时提示，从根本上减少错误。',
-    feedbackWrong: '罚款和批评是事后措施。数字化应该发挥"事前预防"的作用：自动识别风险、实时提示、推送相关知识。'
+    feedbackCorrect: '正确。数字化系统的优势是“自动预警”——基于数据识别高频错误，在填票时实时提示，从根本上减少错误。',
+    feedbackWrong: '罚款和批评是事后措施。数字化应该发挥“事前预防”的作用：自动识别风险、实时提示、推送相关知识。'
   },
   {
     id: 'q_dp_m2',
     tag: 'digital_path',
     difficulty: 'medium',
     day: 5,
-    scenario: '数字化系统提示"该设备近30天内有3次工作票，建议合并检修"。这是数字化哪个功能的体现？',
+    scenario: '数字化系统提示“该设备近30天内有3次工作票，建议合并检修”。这是数字化哪个功能的体现？',
     options: [
       { text: '智能填票', correct: false },
       { text: '数据驱动管理', correct: true },
       { text: '移动端现场办票', correct: false },
       { text: '风险预警', correct: false }
     ],
-    feedbackCorrect: '正确。基于历史数据做趋势分析和决策建议，属于"数据驱动管理"功能。从"拍脑袋决策"到"数据驱动决策"。',
+    feedbackCorrect: '正确。基于历史数据做趋势分析和决策建议，属于“数据驱动管理”功能。从“拍脑袋决策”到“数据驱动决策”。',
     feedbackWrong: '智能填票是辅助开票；移动端是现场操作；风险预警是识别危险。本题是基于历史数据的趋势分析，属于数据驱动管理。'
   },
   // hard: 综合决策
@@ -941,14 +941,14 @@ export const QUESTION_POOL = [
     tag: 'digital_path',
     difficulty: 'hard',
     day: 5,
-    scenario: '某供电局上数字化系统后，部分老员工抵触，认为"我干了20年纸质票，不需要这些花里胡哨的东西"。以下哪种应对最合理？',
+    scenario: '某供电局上数字化系统后，部分老员工抵触，认为“我干了20年纸质票，不需要这些花里胡哨的东西”。以下哪种应对最合理？',
     options: [
       { text: '强制推广，不用就处罚', correct: false },
       { text: '选1-2位老员工做试点，用数据证明效率提升', correct: true },
       { text: '放弃数字化，继续纸质票', correct: false },
       { text: '只让年轻人用，老员工维持纸质', correct: false }
     ],
-    feedbackCorrect: '正确。老员工抵触通常是因为"看不到好处"。选 respected 的老员工试点，用实际数据（开票时间缩短、返工减少）证明价值，是最好的推广方式。',
+    feedbackCorrect: '正确。老员工抵触通常是因为“看不到好处”。选 respected 的老员工试点，用实际数据（开票时间缩短、返工减少）证明价值，是最好的推广方式。',
     feedbackWrong: '强制推广会加剧抵触；放弃数字化是倒退；两套系统并行会增加管理成本。正确做法：试点证明→数据说话→逐步推广。'
   },
   {
@@ -956,14 +956,14 @@ export const QUESTION_POOL = [
     tag: 'digital_path',
     difficulty: 'hard',
     day: 5,
-    scenario: '数字化系统上线后，某签发人"更快地点通过"——不仔细看票面就批量审批。这说明什么？',
+    scenario: '数字化系统上线后，某签发人“更快地点通过”——不仔细看票面就批量审批。这说明什么？',
     options: [
       { text: '数字化系统不好用', correct: false },
       { text: '数字化放大了管理问题，根本在于人的责任心', correct: true },
       { text: '应该取消签发环节', correct: false },
       { text: '系统应该增加更多审批步骤', correct: false }
     ],
-    feedbackCorrect: '正确。数字化是"放大器"——好的管理更好，坏的管理更坏。签发人不认真审票是管理问题，数字化只是让这个问题"更快发生"。根本在于培训和责任心。',
+    feedbackCorrect: '正确。数字化是“放大器”——好的管理更好，坏的管理更坏。签发人不认真审票是管理问题，数字化只是让这个问题“更快发生”。根本在于培训和责任心。',
     feedbackWrong: '问题不在系统，而在人。数字化不能替代责任心。应该加强培训和考核，而不是增加审批步骤或取消环节。'
   }
 ];

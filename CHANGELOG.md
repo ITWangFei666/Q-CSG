@@ -1,12 +1,22 @@
 # CHANGELOG
 
+## v0.3.1 (2026-05-19)
+### 内容（根据 @wangfei 反馈重设计）
+- **Day 5 重设计：全流程实战 → 工作票终结**：聚焦终结七步（人员清点→工器具清点→接地线拆除→标示牌收回→现场清理→双方签字→归档），Day 5 结束的完整安全闭环
+- **新增终结事故警示录**：5 张 explore 卡片，覆盖遗留地线、工具遗留、人员遗漏、标示牌丢失、代签名五类终结事故
+- **新增终结确认单**：form-fill 步骤模拟终结检查流程，含人员清点/接地线拆除/标示牌收回/现场清理四项确认
+- **quiz 标签调整**：从 role_issuer/role_permitter/role_leader → ground_wire/safety_seq（聚焦终结相关的接地线拆除和安全顺序）
+
+### 数据层
+- day5-enriched.js：**完全重写** — 6 步终结版（trigger→reveal→explore→form-fill→quiz→completion），终结事故案例引入 + 终结七步 + 警示案例 + 确认单 + 测验 + 终结检查清单
+- Home.jsx：Day 5 卡片更新~~全流程实战~~→**工作票终结**（icon 🔄→✅）
+
 ## v0.3.0 (2026-05-19)
 ### 功能
 - **动态题库集成**：Quiz 步骤支持 questionPool 配置，从 60 题动态题库随机加载
 - **题目参数化**：场景参数（${voltage}、${line} 等）每次访问随机生成，同知识点不同题目变体
 - **选项乱序**：每次访问选项顺序随机打乱，避免记忆答案
 - **题库扩展**：60 题覆盖 10 个知识点（票种/命名/危险点/带电部位/签发人/许可人/负责人/安全顺序/接地线/数字化），每知识点 3 难度×2 题
-- **Day 5 全流程模拟**：Day 5 从"数字化流程"替换为"全流程实战"——一张工作票从填票→签发→许可→执行→终结的完整生命周期模拟
 
 ### 框架
 - StepFlow 新增 resolveQuestionPool() 函数：支持 tags 数组、difficulty（easy/medium/hard/mixed）、count 配置
@@ -16,7 +26,7 @@
 ### 数据层
 - day1-enriched.js：Day 1 quiz（5 题）改用 questionPool（ticket_type + mixed difficulty）
 - day3-enriched.js：Day 3 quiz（3 题）改用 questionPool（role_issuer/role_permitter/role_leader + medium）
-- day5-enriched.js：**完全重写** — 6 步全流程模拟（trigger→reveal→form-fill→explore→quiz→completion），使用"10kV城南线#16杆绝缘子更换"统一场景串联 Day 1-4 知识点
+- day5-enriched.js：**Day 5 全流程模拟版**（v0.3.0 初始版）
 - day1-review.js ~ day5-review.js：复习测验共 12 题改用 questionPool（按 Day 知识点分组）
 - Home.jsx：Day 5 卡片更新~~数字化流程~~→**全流程实战**（icon 📊→🔄）
 

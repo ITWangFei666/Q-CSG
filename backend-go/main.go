@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
 )
 
@@ -30,6 +31,9 @@ func main() {
 		AllowCredentials: true,
 	}))
 
+	// Gzip compression
+	r.Use(gzip.Gzip(gzip.DefaultCompression))
+
 	// API routes
 	api := r.Group("/api")
 	{
@@ -39,6 +43,9 @@ func main() {
 		api.GET("/review/weakness", reviewWeaknessHandler)
 		api.GET("/review/smart-path", reviewSmartPathHandler)
 		api.GET("/review/day/:day", reviewDayHandler)
+		api.GET("/admin/dashboard", adminDashboardHandler)
+		api.GET("/admin/users", adminUsersHandler)
+		api.GET("/admin/records", adminRecordsHandler)
 	}
 
 	// Serve static files (dist is ../dist relative to backend-go/)

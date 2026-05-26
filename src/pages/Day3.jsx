@@ -23,7 +23,7 @@ function Day3() {
     }
     collectQuizErrors('d3_s4')
     syncQuizResults(3, state)
-    navigate('/')
+    navigate('/day4')
   }
 
   return (

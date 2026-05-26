@@ -1,4 +1,4 @@
-// 版本号规范：v主.次.补丁
-// 主 — 架构变化 | 次 — 内容/功能 | 补丁 — bug 修复/文案
-// 每次改动同步更新 CHANGELOG.md
-export const APP_VERSION = 'v0.3.0'
+// 版本号自动从构建环境变量 VITE_APP_VERSION 读取
+// 构建时设置：VITE_APP_VERSION=v0.6.9 npm run build
+// 默认值作为 fallback
+export const APP_VERSION = import.meta.env.VITE_APP_VERSION || 'dev'

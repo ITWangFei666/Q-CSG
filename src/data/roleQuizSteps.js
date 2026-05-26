@@ -116,7 +116,7 @@ export const ROLE_QUIZ_STEPS = [
       const meta = {
         filler: {
           headline: '📝 推荐路径：一线填票人',
-          body: '你更关注"怎么把票填对、填快"。',
+          body: '你更关注“怎么把票填对、填快”。',
           points: [
             '核心模块：Day 1（票种识别）+ Day 2（票面填写）',
             '价值：让每一张票一次通过，不返工',
@@ -124,7 +124,7 @@ export const ROLE_QUIZ_STEPS = [
         },
         reviewer: {
           headline: '🔍 推荐路径：票面审核人',
-          body: '你更关注"怎么一眼看出问题票"。',
+          body: '你更关注“怎么一眼看出问题票”。',
           points: [
             '核心模块：Day 3（角色审票）+ Day 4（现场安措）',
             '价值：建立审查清单，拒绝背书风险',
@@ -132,7 +132,7 @@ export const ROLE_QUIZ_STEPS = [
         },
         manager: {
           headline: '📋 推荐路径：管理层',
-          body: '你更关注"怎么通过数据管好安全"。',
+          body: '你更关注“怎么通过数据管好安全”。',
           points: [
             '核心模块：Day 4（现场安措）+ Day 5（数字化）',
             '价值：用数据驱动制度完善',

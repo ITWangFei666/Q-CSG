@@ -32,6 +32,8 @@ function prepareSteps(steps, opts = {}) {
     // ── 2. form-fill: validatorKey → validate ──
     if (s.type === 'form-fill' && s.fields) {
       s.fields = s.fields.map((f) => {
+        // 已有内联 validate 函数则优先使用（如 Day 5 终结确认单）
+        if (typeof f.validate === 'function') return f
         const fnKey = f.validatorKey || f.key
         const validate = validators[fnKey] || null
         return { ...f, validate }

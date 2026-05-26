@@ -33,7 +33,7 @@ function Day2() {
       })
     })
     syncQuizResults(2, state)
-    navigate('/')
+    navigate('/day3')
   }
 
   return (

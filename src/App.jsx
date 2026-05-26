@@ -6,6 +6,7 @@ import Day3 from './pages/Day3'
 import Day4 from './pages/Day4'
 import Day5 from './pages/Day5'
 import Home from './pages/Home'
+import Admin from './pages/Admin'
 import Review from './pages/Review'
 import ReviewDay from './pages/ReviewDay'
 import './styles/index.css'
@@ -24,6 +25,7 @@ function App() {
           <Route path="/review" element={<Review />} />
           <Route path="/review-day" element={<ReviewDay />} />
         </Route>
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   )

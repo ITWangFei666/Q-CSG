@@ -78,7 +78,7 @@ export const SCENE_ELEMENTS = [
     completedState: 'placed',
     color: '#8b5cf6',
     completedColor: '#16a34a',
-    label: '挂"禁止合闸"牌',
+    label: '挂“禁止合闸”牌',
   },
   {
     id: 'sign_danger_16',
@@ -89,7 +89,7 @@ export const SCENE_ELEMENTS = [
     completedState: 'placed',
     color: '#8b5cf6',
     completedColor: '#16a34a',
-    label: '挂"止步危险"牌',
+    label: '挂“止步危险”牌',
   },
   {
     id: 'barrier_16',
@@ -158,18 +158,18 @@ export const OPERATION_SEQUENCE = [
     requires: ['ground_line_16'],
     next: ['barrier_16'],
     score: 5,
-    title: '步骤6a：挂"禁止合闸"标示牌',
+    title: '步骤6a：挂“禁止合闸”标示牌',
     hint: '挂在101开关操作把手上',
-    completeMsg: '已悬挂"禁止合闸，有人工作！"标示牌',
+    completeMsg: '已悬挂“禁止合闸，有人工作！”标示牌',
   },
   {
     id: 'sign_danger_16',
     requires: ['ground_line_16'],
     next: ['barrier_16'],
     score: 5,
-    title: '步骤6b：挂"止步，高压危险"标示牌',
+    title: '步骤6b：挂“止步，高压危险”标示牌',
     hint: '挂在遮栏上，面向外',
-    completeMsg: '已悬挂"止步，高压危险"标示牌',
+    completeMsg: '已悬挂“止步，高压危险”标示牌',
   },
   {
     id: 'barrier_16',
@@ -244,7 +244,7 @@ export const ERROR_RULES = [
       return false // Placeholder for future implementation
     },
     title: '⚠️ 标示牌挂错位置',
-    message: '"止步，高压危险"应挂在遮栏上，面向外；101开关应挂"禁止合闸，有人工作"。',
+    message: '“止步，高压危险”应挂在遮栏上，面向外；101开关应挂“禁止合闸，有人工作”。',
     penalty: -5,
   },
 ]

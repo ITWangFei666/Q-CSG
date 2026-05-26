@@ -34,10 +34,10 @@ const courseDays = [
   },
   {
     num: 5,
-    title: '全流程实战',
-    desc: '从填票→签发→许可→执行→终结，走完一张工作票的完整生命周期',
-    app: '全流程模拟 + 三角色视角 + 综合决策测验',
-    icon: '🔄',
+    title: '工作票终结',
+    desc: '聚焦终结七步——人员清点、接地线拆除、标示牌收回…守护安全最后一道关',
+    app: '终结检查模拟 + 事故警示录 + 终结决策测验',
+    icon: '🏁',
   },
 ]
 
@@ -63,7 +63,6 @@ function Home() {
     return (
       <div className="home-page">
         <section className="hero-section hero-compact">
-          <h1>电力行业工作票课程</h1>
           <p className="hero-subtitle">输电专业 · 互动式学习应用</p>
         </section>
 
@@ -85,7 +84,6 @@ function Home() {
   return (
     <div className="home-page">
       <section className="hero-section hero-compact">
-        <h1>电力行业工作票课程</h1>
         <p className="hero-subtitle">输电专业 · 互动式学习应用</p>
       </section>
 

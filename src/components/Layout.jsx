@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Outlet, NavLink, useLocation } from 'react-router-dom'
 import { roleStore } from '../store/roleStore'
+import { progressStore } from '../store/progressStore'
 import { APP_VERSION } from '../version'
 
 const days = [
@@ -8,19 +9,26 @@ const days = [
   { path: '/day2', num: 2, label: '票面填写' },
   { path: '/day3', num: 3, label: '三种人角色' },
   { path: '/day4', num: 4, label: '现场安措' },
-  { path: '/day5', num: 5, label: '数字化流程' },
+  { path: '/day5', num: 5, label: '工作票终结' },
 ]
 
 function Layout() {
   const location = useLocation()
   const [role] = useState(() => roleStore.getCurrentRole())
   const focusDays = role?.focusDays || []
+  const progress = progressStore.getProgress()
+
+  const getStatusIcon = (dayNum) => {
+    const key = `day${dayNum}`
+    if (progress.daysCompleted[key]) return '✅'
+    return '📖'
+  }
 
   return (
     <div className="app-layout">
       <header className="app-header">
         <NavLink to="/" className="header-brand">
-          电力工作票互动课程
+          电力行业工作票系列课程
         </NavLink>
         <div className="header-actions">
           {/* 预留：登录入口 */}
@@ -40,20 +48,24 @@ function Layout() {
           {days.map((d) => {
             const isActive = location.pathname === d.path
             const isFocus = focusDays.includes(d.num)
+            const isCompleted = progress.daysCompleted[`day${d.num}`]
+            const score = progress.scores[`day${d.num}`]
             return (
               <NavLink
                 key={d.path}
                 to={d.path}
                 className={({ isActive: linkActive }) =>
-                  `sidebar-item ${linkActive ? 'current' : ''} ${isFocus ? 'focus' : ''}`
+                  `sidebar-item ${linkActive ? 'current' : ''} ${isFocus ? 'focus' : ''} ${isCompleted ? 'completed' : ''}`
                 }
               >
-                <span className={`day-badge ${isFocus ? 'focus-badge' : ''}`}>
+                <span className={`day-badge ${isFocus ? 'focus-badge' : ''} ${isCompleted ? 'completed-badge' : ''}`}>
                   D{d.num}
                 </span>
                 <div className="sidebar-item-text">
                   <span className="day-label">{d.label}</span>
                   {isFocus && <span className="focus-dot">⭐</span>}
+                  {score != null && <span className="sidebar-score">{score}分</span>}
+                  <span className="sidebar-status">{getStatusIcon(d.num)}</span>
                 </div>
               </NavLink>
             )

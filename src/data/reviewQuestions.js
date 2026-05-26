@@ -17,7 +17,7 @@ export const REVIEW_QUESTIONS = [
       工作班人员: '李四、王五（共2人）',
       工作设备: '10kV 城南线',
       工作任务: '更换绝缘子',
-      计划时间: '2024年5月6日8:00 — 12:00',
+      计划时间: '2024年5月6日8：00 — 12：00',
       安全措施: {
         应拉开关: '10kV 101开关',
         应合接地: '10kV 101开关线路侧装设接地线',
@@ -29,10 +29,10 @@ export const REVIEW_QUESTIONS = [
         { danger: '触电', measure: '注意安全' },
         { danger: '高处坠落', measure: '系安全带' },
       ],
-      签发人: '赵六（2024年5月6日7:30）',
+      签发人: '赵六（2024年5月6日7：30）',
       许可方式: '当面',
-      许可人: '孙七（2024年5月6日8:00）',
-      负责人签许可: '张三（2024年5月6日8:00）',
+      许可人: '孙七（2024年5月6日8：00）',
+      负责人签许可: '张三（2024年5月6日8：00）',
     },
     errors: [
       {
@@ -46,23 +46,23 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e2',
         location: '6.2 安全措施',
-        description: '"装设接地线"表述不具体',
-        correct: '应写明"装设XX#接地线一组"',
+        description: '“装设接地线”表述不具体',
+        correct: '应写明“装设XX#接地线一组”',
         focus: '签发人',
         hint: '接地线的描述够具体吗？',
       },
       {
         id: 'e3',
         location: '6.3 安全措施',
-        description: '"挂标示牌"太笼统',
-        correct: '应写明具体标示牌种类（如"禁止合闸，有人工作"）和悬挂位置',
+        description: '“挂标示牌”太笼统',
+        correct: '应写明具体标示牌种类（如“禁止合闸，有人工作”）和悬挂位置',
         focus: '许可人',
         hint: '标示牌有没有说清楚挂什么、挂哪里？',
       },
       {
         id: 'e4',
         location: '6.4 保留带电部位',
-        description: '填写"无"，但可能遗漏同杆架设线路',
+        description: '填写“无”，但可能遗漏同杆架设线路',
         correct: '应写明邻近带电设备（如10kV城北线同杆架设）',
         focus: '签发人，工作负责人',
         hint: '真的没有任何带电设备在附近吗？',
@@ -70,8 +70,8 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e5',
         location: '7. 危险点分析',
-        description: '"注意安全"表述空洞无具体措施',
-        correct: '应写具体措施如"停电、验电、装接地线、保持0.7m安全距离"',
+        description: '“注意安全”表述空洞无具体措施',
+        correct: '应写具体措施如“停电、验电、装接地线、保持0.7m安全距离”',
         focus: '签发人',
         hint: '预控措施会不会太像口号了？',
       },
@@ -95,7 +95,7 @@ export const REVIEW_QUESTIONS = [
       防火措施: '清除周围可燃物、配备灭火器',
       动火执行人: '张三',
       消防监护人: '无',
-      动火时间: '2024年5月6日14:00 — 18:00',
+      动火时间: '2024年5月6日14：00 — 18：00',
     },
     errors: [
       {
@@ -109,7 +109,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e2',
         location: '防火措施',
-        description: '缺少"检测可燃气体浓度"',
+        description: '缺少“检测可燃气体浓度”',
         correct: '一级动火前必须检测油气浓度',
         focus: '签发人，许可人',
         hint: '变压器里有油，动手之前要不要先测一下？',
@@ -117,7 +117,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e3',
         location: '消防监护人',
-        description: '消防监护人填写"无"',
+        description: '消防监护人填写“无”',
         correct: '一级动火必须有专人消防监护',
         focus: '签发人',
         hint: '一级动火可以没有消防监护人吗？',
@@ -125,8 +125,8 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e4',
         location: '动火地点',
-        description: '"#2主变压器本体"描述不够精确',
-        correct: '应写明具体位置如"#2主变压器本体西侧漏油点"',
+        description: '“#2主变压器本体”描述不够精确',
+        correct: '应写明具体位置如“#2主变压器本体西侧漏油点”',
         focus: '工作负责人',
         hint: '这么大个变压器，到底焊哪里？',
       },
@@ -149,7 +149,7 @@ export const REVIEW_QUESTIONS = [
       工作班人员: '李四、王五',
       工作设备: '10kV 101开关柜',
       工作任务: '开关柜清扫',
-      工作时间: '2024年5月6日9:00 — 12:00',
+      工作时间: '2024年5月6日9：00 — 12：00',
       带电部位: '10kV I段母线带电',
       安全措施: '保持安全距离、穿绝缘鞋、戴绝缘手套',
     },
@@ -157,7 +157,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e1',
         location: '带电部位',
-        description: '只写"I段母线带电"，不够具体',
+        description: '只写“I段母线带电”，不够具体',
         correct: '应写明具体带电设备名称和位置',
         focus: '签发人，工作负责人',
         hint: 'I段母线那么大，具体哪部分带电？哪些设备带电？',
@@ -165,7 +165,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e2',
         location: '安全措施',
-        description: '缺少"设专人监护"',
+        description: '缺少“设专人监护”',
         correct: '带电作业必须设专人监护',
         focus: '签发人',
         hint: '带电清扫，谁盯着安全？',
@@ -173,7 +173,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e3',
         location: '安全措施',
-        description: '缺少"使用绝缘工具"',
+        description: '缺少“使用绝缘工具”',
         correct: '带电清扫必须使用绝缘工具',
         focus: '工作负责人',
         hint: '清扫工具是普通扫帚还是绝缘工具？',
@@ -181,8 +181,8 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e4',
         location: '工作设备',
-        description: '"10kV 101开关柜"未使用双重名称',
-        correct: '应使用双重名称，如"10kV城南线101开关柜"',
+        description: '“10kV 101开关柜”未使用双重名称',
+        correct: '应使用双重名称，如“10kV城南线101开关柜”',
         focus: '签发人',
         hint: '光说101开关柜，不怕走错间隔？',
       },
@@ -204,7 +204,7 @@ export const REVIEW_QUESTIONS = [
       抢修任务: '10kV城南线跳闸，排查故障',
       抢修地点: '城南线#15杆至#20杆',
       安全措施: '断开10kV 101开关',
-      抢修开始: '2024年5月6日20:00',
+      抢修开始: '2024年5月6日20：00',
       抢修结束: '（未填）',
       抢修人员: '张三、李四、王五',
       工作负责人: '张三',
@@ -213,7 +213,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e1',
         location: '安全措施',
-        description: '只写"断开101开关"，缺少验电、接地、挂牌',
+        description: '只写“断开101开关”，缺少验电、接地、挂牌',
         correct: '应写明验电、接地、挂标示牌等完整措施',
         focus: '工作负责人，许可人',
         hint: '光拉开关就安全了？万一反送电呢？',
@@ -249,16 +249,16 @@ export const REVIEW_QUESTIONS = [
     unit: 'XX供电局',
     ticketNo: '20240506005',
     ticketContent: {
-      计划开始: '2024年5月6日8:00',
-      计划结束: '2024年5月5日17:00',
-      签发时间: '2024年5月6日9:00',
-      许可时间: '2024年5月6日7:30',
+      计划开始: '2024年5月6日8：00',
+      计划结束: '2024年5月5日17：00',
+      签发时间: '2024年5月6日9：00',
+      许可时间: '2024年5月6日7：30',
     },
     errors: [
       {
         id: 'e1',
         location: '计划时间',
-        description: '结束时间（5月5日17:00）早于开始时间（5月6日8:00）',
+        description: '结束时间（5月5日17：00）早于开始时间（5月6日8：00）',
         correct: '结束时间必须晚于开始时间',
         focus: '签发人',
         hint: '结束时间比开始时间还早？时光倒流了？',
@@ -266,7 +266,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e2',
         location: '签发时间',
-        description: '签发时间（9:00）晚于计划开始时间（8:00）',
+        description: '签发时间（9：00）晚于计划开始时间（8：00）',
         correct: '应在计划开始前完成签发',
         focus: '签发人',
         hint: '都开工了才签发？先斩后奏？',
@@ -274,7 +274,7 @@ export const REVIEW_QUESTIONS = [
       {
         id: 'e3',
         location: '许可时间',
-        description: '许可时间（7:30）早于签发时间（9:00）',
+        description: '许可时间（7：30）早于签发时间（9：00）',
         correct: '必须先签发后许可，签发是许可的前置条件',
         focus: '许可人',
         hint: '签都没签，谁允许你许可的？',
@@ -292,9 +292,9 @@ export const REVIEW_QUESTIONS = [
 export const QUICK_QUESTIONS = [
   {
     id: 'qq01',
-    description: '工作班成员栏只写了"等3人"，未列姓名。',
+    description: '工作班成员栏只写了“等3人”，未列姓名。',
     answer: '错误',
-    explanation: '必须写明所有工作人员姓名。"等X人"不符合票面填写规范。',
+    explanation: '必须写明所有工作人员姓名。“等X人”不符合票面填写规范。',
   },
   {
     id: 'qq02',
@@ -318,6 +318,6 @@ export const QUICK_QUESTIONS = [
     id: 'qq05',
     description: '工作票编号：001（无年份、无单位代码）。',
     answer: '错误',
-    explanation: '编号应包含单位代码、年份、序号以确保唯一性。如"XX-2024-001"。',
+    explanation: '编号应包含单位代码、年份、序号以确保唯一性。如“XX-2024-001”。',
   },
 ]

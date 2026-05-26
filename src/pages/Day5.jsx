@@ -26,9 +26,9 @@ function Day5() {
         }
       })
     }
-    collectQuizErrors('d5_s4')
+    collectQuizErrors('d5_s6')
     syncQuizResults(5, state)
-    navigate('/')
+    navigate('/review')
   }
 
   return (

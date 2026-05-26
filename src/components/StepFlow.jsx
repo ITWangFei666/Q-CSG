@@ -23,8 +23,22 @@ function StepFlow({ steps, onComplete }) {
   const [currentIdx, setCurrentIdx] = useState(0)
   const [state, setState] = useState({}) // { stepId: { selected, correct, time, ... } }
 
-  const current = steps[currentIdx]
-  const isLast = currentIdx === steps.length - 1
+  const current = steps?.[currentIdx]
+  const isLast = currentIdx === (steps?.length || 0) - 1
+
+  // 安全处理：steps 为空或 current 不存在时显示占位
+  if (!current) {
+    return (
+      <div className="step-flow">
+        <div className="step-content">
+          <div className="step-reveal" style={{ textAlign: 'center', padding: '60px 20px' }}>
+            <h2 className="step-title">加载中...</h2>
+            <p className="step-body">请稍候，课程内容加载中。</p>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   const next = () => {
     if (isLast) {
@@ -1033,22 +1047,52 @@ function FormFillStep({ step, state, onUpdate, onNext }) {
       {submitted && allValid && (
         <div className="form-bottom">
           <div className="form-summary form-summary-ok">✓ 全部字段填写规范</div>
+
+          {/* 填写内容预览：将用户填写内容渲染为结构化卡片 */}
+          <div className="form-preview">
+            <div className="form-preview-header">📋 填写内容预览</div>
+            <div className="form-preview-body">
+              {step.fields.map((f) => {
+                const val = values[f.key]
+                let displayVal = ''
+                if (f.type === 'multi-select' && Array.isArray(val)) {
+                  displayVal = val.length > 0
+                    ? val.map((vid) => {
+                        const opt = (f.options || []).find((o) => o.id === vid)
+                        return opt ? opt.label : vid
+                      }).join('、')
+                    : '（未选择）'
+                } else if (f.type === 'select') {
+                  const opt = (f.options || []).find((o) => o.id === val)
+                  displayVal = opt ? opt.label : (val || '（未选择）')
+                } else {
+                  displayVal = val || '（未填写）'
+                }
+                return (
+                  <div key={f.key} className="form-preview-row">
+                    <span className="form-preview-label">{f.label}</span>
+                    <span className="form-preview-value">{displayVal}</span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
           {step.diagnose && (() => {
-            const d = step.diagnose(values)
-            if (!d) return null
-            return (
-              <div className="form-diagnose">
-                {d.headline && <h3 className="summary-headline">{d.headline}</h3>}
-                {d.body && <p>{d.body}</p>}
-                {d.points && (
-                  <ul className="summary-points">
-                    {d.points.map((p, i) => (
-                      <li key={i}>{p}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            )
+            try {
+              const d = step.diagnose(values)
+              if (!d) return null
+              return (
+                <div className="form-diagnose">
+                  {d.headline && <h3 className="summary-headline">{d.headline}</h3>}
+                  {d.body && <p>{d.body}</p>}
+                  {d.points && <SummaryPoints points={d.points} />}
+                </div>
+              )
+            } catch (e) {
+              console.error('格式诊断异常:', e)
+              return <div className="form-diagnose"><p>诊断加载异常，可继续下一步。</p></div>
+            }
           })()}
           <button className="btn btn-primary btn-lg" onClick={onNext}>
             {step.cta || '下一步'}
