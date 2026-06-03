@@ -13,7 +13,11 @@ const TABS = [
 function Admin() {
   const [password, setPassword] = useState('')
   const [authed, setAuthed] = useState(() => !!sessionStorage.getItem('qcsg_admin_auth'))
-  const [activeTab, setActiveTab] = useState('overview')
+  const getTabFromHash = () => {
+    const tab = window.location.hash.replace('#', '')
+    return TABS.some(t => t.key === tab) ? tab : 'overview'
+  }
+  const [activeTab, setActiveTab] = useState(getTabFromHash)
   const [data, setData] = useState(null)
   const [users, setUsers] = useState(null)
   const [records, setRecords] = useState(null)
@@ -104,7 +108,7 @@ function Admin() {
             <button
               key={tab.key}
               className={`admin-sidebar-item ${activeTab === tab.key ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.key)}
+              onClick={() => { setActiveTab(tab.key); window.location.hash = tab.key }}
             >
               {tab.label}
             </button>

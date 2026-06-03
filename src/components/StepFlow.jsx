@@ -152,6 +152,15 @@ function StepRenderer({ step, state, allState, onUpdate, onNext }) {
           onNext={onNext}
         />
       )
+    case 'audit_judge':
+      return (
+        <AuditJudgeStep
+          step={step}
+          state={state}
+          onUpdate={onUpdate}
+          onNext={onNext}
+        />
+      )
     case 'diagnosis':
     case 'summary':
       return <SummaryStep step={step} allState={allState} onNext={onNext} />
@@ -1527,6 +1536,178 @@ function CompletionStep({ step, onNext }) {
   )
 }
 
+
+/* ─── audit_judge：票面审查 — 学员主动标记错误 ─────────────────
+ * 1. 展示完整票面（所有栏目）
+ * 2. 学员逐栏点击标记"我认为这栏有错"（可多选）
+ * 3. 点击"提交审查"后显示对比结果
+ * 4. 找对/漏掉/误判 三类结果高亮展示
+ * 5. 可展开查看每栏的正确写法和反馈
+ */
+function AuditJudgeStep({ step, state, onUpdate, onNext }) {
+  const sections = step.sections || []
+  const errorIds = sections.filter((s) => s.error).map((s) => s.id)
+  const correctIds = sections.filter((s) => !s.error).map((s) => s.id)
+
+  const marked = state.marked || []
+  const submitted = state.submitted || false
+  const expandedId = state.expandedId || null
+
+  const toggleMark = (id) => {
+    if (submitted) return
+    const next = marked.includes(id)
+      ? marked.filter((m) => m !== id)
+      : [...marked, id]
+    onUpdate({ marked: next })
+  }
+
+  const handleSubmit = () => {
+    const found = marked.filter((m) => errorIds.includes(m))
+    const missed = errorIds.filter((e) => !marked.includes(e))
+    const falsePositive = marked.filter((m) => correctIds.includes(m))
+    onUpdate({ submitted: true, found, missed, falsePositive })
+  }
+
+  const found = state.found || []
+  const missed = state.missed || []
+  const falsePositive = state.falsePositive || []
+  const totalErrors = errorIds.length
+
+  const allCorrect = found.length === totalErrors && falsePositive.length === 0
+  // 提交后无论对错均可继续，学习重点是"知道哪里错了"
+  const canProceed = submitted
+
+  return (
+    <div className="step-audit-judge">
+      {step.title && <h2 className="step-title">{step.title}</h2>}
+      {(step.subtitle || step.instruction) && (
+        <p className="step-prompt">{step.subtitle || step.instruction}</p>
+      )}
+
+      {step.ticketHeader && (
+        <div className="audit-ticket-header">{step.ticketHeader}</div>
+      )}
+
+      <div className="audit-sections">
+        {sections.map((sec) => {
+          const isMarked = marked.includes(sec.id)
+          const isFound = found.includes(sec.id)
+          const isMissed = missed.includes(sec.id)
+          const isFalsePositive = falsePositive.includes(sec.id)
+          const isExpanded = expandedId === sec.id
+
+          let statusClass = ''
+          if (isFound) statusClass = 'status-found'
+          else if (isMissed) statusClass = 'status-missed'
+          else if (isFalsePositive) statusClass = 'status-false'
+          else if (submitted && !sec.error) statusClass = 'status-ok'
+
+          return (
+            <div
+              key={sec.id}
+              className={`audit-section ${isMarked ? 'marked' : ''} ${statusClass}`}
+              onClick={() => {
+                if (submitted) {
+                  onUpdate({ expandedId: isExpanded ? null : sec.id })
+                } else {
+                  toggleMark(sec.id)
+                }
+              }}
+            >
+              <div className="audit-section-header">
+                <span className="audit-section-label">{sec.label}</span>
+                <span className="audit-section-value">{sec.value}</span>
+                {!submitted && (
+                  <span className={`audit-mark ${isMarked ? 'active' : ''}`}>
+                    {isMarked ? '❌ 标记有错' : '○ 点击标记'}
+                  </span>
+                )}
+                {submitted && isFound && <span className="audit-badge found">✓ 找对</span>}
+                {submitted && isMissed && <span className="audit-badge missed">✗ 漏检</span>}
+                {submitted && isFalsePositive && <span className="audit-badge false">⚠ 误判</span>}
+                {submitted && !sec.error && !isFalsePositive && (
+                  <span className="audit-badge ok">✓ 原票正确</span>
+                )}
+              </div>
+
+              {isExpanded && submitted && (
+                <div className="audit-section-detail">
+                  {sec.error && (
+                    <>
+                      <div className="audit-detail-row">
+                        <span className="audit-detail-label">错误说明：</span>
+                        <span className="audit-detail-text">{sec.feedback}</span>
+                      </div>
+                      {sec.correctValue && (
+                        <div className="audit-detail-row">
+                          <span className="audit-detail-label">正确写法：</span>
+                          <span className="audit-detail-correct">{sec.correctValue}</span>
+                        </div>
+                      )}
+                    </>
+                  )}
+                  {!sec.error && (
+                    <div className="audit-detail-row">
+                      <span className="audit-detail-label">说明：</span>
+                      <span className="audit-detail-text">此项填写正确，无需修改。</span>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {!submitted && (
+        <>
+          <div className="audit-progress-hint">
+            已标记 {marked.length} 处可疑问题
+          </div>
+          <button
+            className="btn btn-primary btn-lg"
+            onClick={handleSubmit}
+            disabled={marked.length === 0}
+          >
+            提交审查
+          </button>
+        </>
+      )}
+
+      {submitted && (
+        <>
+          <div className="audit-result-summary">
+            <h3>审查结果</h3>
+            <div className="audit-result-stats">
+              <span className="audit-stat found">✅ 找对 {found.length} 个</span>
+              <span className="audit-stat missed">❌ 漏掉 {missed.length} 个</span>
+              {falsePositive.length > 0 && (
+                <span className="audit-stat false">⚠️ 误判 {falsePositive.length} 个</span>
+              )}
+            </div>
+            {allCorrect && (
+              <p className="audit-result-msg">🎉 完美！所有错误都找出来了！</p>
+            )}
+            {!allCorrect && (
+              <p className="audit-result-msg">
+                {missed.length > 0
+                  ? `还有 ${missed.length} 个错误没发现，点击漏掉的栏目查看正确答案。`
+                  : `找对了，但误判了 ${falsePositive.length} 个正确栏目。`}
+              </p>
+            )}
+          </div>
+
+          <button
+            className="btn btn-primary btn-lg"
+            onClick={onNext}
+          >
+            {step.cta || '下一步'}
+          </button>
+        </>
+      )}
+    </div>
+  )
+}
 
 function UnlockStep({ step, onNext }) {
   return (

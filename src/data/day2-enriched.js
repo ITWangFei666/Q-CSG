@@ -111,7 +111,7 @@ export const DAY2_ENRICHED_STEPS = [
     id: 'd2_s3',
     type: 'explore',
     title: '这张票为什么被退了？（Day 2）',
-    subtitle: '逐栏审查，找出5个致命错误',
+    subtitle: '逐栏审查，找出7个致命错误',
     layout: 'ticket_audit',
     ticket: {
       header: '单位：XX供电局  编号：20240506001\n电气第一种工作票',

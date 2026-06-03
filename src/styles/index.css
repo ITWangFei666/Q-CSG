@@ -1431,3 +1431,127 @@ a { color: inherit; text-decoration: none; }
   flex: 1; font-size: 13px; color: #1e293b; line-height: 1.5;
   white-space: pre-wrap; word-break: break-word;
 }
+
+/* ===== audit_judge: 票面审查 — 学员主动标记错误 ===== */
+.step-audit-judge { padding: 8px 0; }
+
+.audit-ticket-header {
+  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+  padding: 12px 16px; font-size: 13px; font-weight: 600; color: #1e293b;
+  margin-bottom: 16px; white-space: pre-wrap; line-height: 1.5;
+}
+
+.audit-sections {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-bottom: 20px;
+}
+
+.audit-section {
+  background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+  padding: 12px 16px; cursor: pointer; transition: all 0.2s;
+}
+.audit-section:hover { border-color: #2563eb; }
+
+.audit-section.marked {
+  border-color: #ef4444; background: #fef2f2;
+}
+
+.audit-section.status-found {
+  border-color: #16a34a; background: #f0fdf4;
+}
+.audit-section.status-missed {
+  border-color: #ef4444; background: #fef2f2;
+}
+.audit-section.status-false {
+  border-color: #f59e0b; background: #fffbeb;
+}
+.audit-section.status-ok {
+  border-color: #3b82f6; background: #eff6ff;
+}
+
+.audit-section-header {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+
+.audit-section-label {
+  flex: 0 0 auto; font-size: 13px; font-weight: 600; color: #374151;
+  min-width: 120px;
+}
+
+.audit-section-value {
+  flex: 1; font-size: 13px; color: #1e293b; line-height: 1.5;
+  white-space: pre-wrap; word-break: break-word;
+}
+
+.audit-mark {
+  font-size: 12px; color: #94a3b8; padding: 4px 10px;
+  border: 1px dashed #cbd5e1; border-radius: 6px;
+  transition: all 0.2s;
+}
+.audit-mark.active {
+  color: #ef4444; border-color: #ef4444; background: #fef2f2;
+  font-weight: 600;
+}
+
+.audit-badge {
+  font-size: 12px; padding: 3px 10px; border-radius: 6px;
+  font-weight: 600; white-space: nowrap;
+}
+.audit-badge.found { color: #16a34a; background: #dcfce7; }
+.audit-badge.missed { color: #ef4444; background: #fee2e2; }
+.audit-badge.false { color: #b45309; background: #fef3c7; }
+.audit-badge.ok { color: #2563eb; background: #dbeafe; }
+
+.audit-section-detail {
+  margin-top: 12px; padding-top: 12px;
+  border-top: 1px dashed #e2e8f0;
+}
+
+.audit-detail-row {
+  display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start;
+}
+.audit-detail-row:last-child { margin-bottom: 0; }
+
+.audit-detail-label {
+  flex: 0 0 auto; font-size: 12px; font-weight: 600; color: #64748b;
+}
+
+.audit-detail-text {
+  flex: 1; font-size: 13px; color: #475569; line-height: 1.5;
+}
+
+.audit-detail-correct {
+  flex: 1; font-size: 13px; color: #16a34a; font-weight: 600;
+  background: #f0fdf4; padding: 6px 10px; border-radius: 6px;
+  line-height: 1.5;
+}
+
+.audit-progress-hint {
+  text-align: center; font-size: 13px; color: #64748b;
+  margin-bottom: 16px;
+}
+
+.audit-result-summary {
+  background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+  padding: 20px; text-align: center; margin-bottom: 20px;
+}
+.audit-result-summary h3 {
+  margin: 0 0 12px 0; font-size: 16px; color: #1e293b;
+}
+
+.audit-result-stats {
+  display: flex; justify-content: center; gap: 16px;
+  flex-wrap: wrap; margin-bottom: 12px;
+}
+
+.audit-stat {
+  font-size: 14px; font-weight: 600; padding: 6px 14px;
+  border-radius: 8px;
+}
+.audit-stat.found { color: #16a34a; background: #dcfce7; }
+.audit-stat.missed { color: #ef4444; background: #fee2e2; }
+.audit-stat.false { color: #b45309; background: #fef3c7; }
+
+.audit-result-msg {
+  font-size: 14px; color: #475569; margin: 0;
+}

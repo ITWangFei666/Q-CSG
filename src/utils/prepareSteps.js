@@ -77,6 +77,34 @@ function prepareSteps(steps, opts = {}) {
       }
     }
 
+    // ── 4b. audit_judge: convert ticket → sections ──
+    if (s.type === 'audit_judge' && s.ticket && Array.isArray(s.ticket.sections)) {
+      s.sections = s.ticket.sections.map((sec, idx) => ({
+        id: sec.id || `sec_${idx}`,
+        label: sec.label,
+        value: sec.value,
+        error: sec.error || false,
+        feedback: sec.feedback || sec.hint || '',
+        correctValue: sec.correctValue || '',
+      }))
+      s.ticketHeader = s.ticket.header || ''
+      delete s.ticket
+    }
+    // 兼容旧格式：explore + layout=ticket_audit → 也转成 audit_judge
+    if (s.type === 'explore' && s.layout === 'ticket_audit' && s.ticket && Array.isArray(s.ticket.sections)) {
+      s.type = 'audit_judge'
+      s.sections = s.ticket.sections.map((sec, idx) => ({
+        id: sec.id || `sec_${idx}`,
+        label: sec.label,
+        value: sec.value,
+        error: sec.error || false,
+        feedback: sec.feedback || sec.hint || '',
+        correctValue: sec.correctValue || '',
+      }))
+      s.ticketHeader = s.ticket.header || ''
+      delete s.ticket
+    }
+
     // ── 5. quiz: ensure options have text or label ──
     if ((s.type === 'quiz' || s.type === 'quiz-question') && s.questions) {
       s.questions = s.questions.map((q) => ({
