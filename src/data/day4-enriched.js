@@ -31,7 +31,7 @@ export const DAY4_ENRICHED_STEPS = [
     ],
     cta: '关键顺序不能错',
     next: 'd4_s1b',
-    progress: '1/7'
+    progress: '1/8'
   },
   {
     id: 'd4_s1b',
@@ -58,7 +58,7 @@ export const DAY4_ENRICHED_STEPS = [
     ],
     cta: '了解常见操作错误',
     next: 'd4_s2',
-    progress: '2/7'
+    progress: '2/8'
   },
   {
     id: 'd4_s2',
@@ -84,7 +84,7 @@ export const DAY4_ENRICHED_STEPS = [
     ],
     cta: '验电和走错间隔',
     next: 'd4_s2b',
-    progress: '3/7'
+    progress: '3/8'
   },
   {
     id: 'd4_s2b',
@@ -105,28 +105,41 @@ export const DAY4_ENRICHED_STEPS = [
       }
     ],
     cta: '进入虚拟现场',
-    next: 'd4_s3',
-    progress: '4/7'
+    next: 'd4_s3a',
+    progress: '4/8'
   },
   {
-    id: 'd4_s3',
+    id: 'd4_s3a',
     type: 'explore',
-    title: '熟悉虚拟现场（Day 4）',
-    subtitle: '点击场景中的元素，了解每个设备的作用和操作要点',
+    title: '熟悉虚拟现场 — 停电设备（Day 4）',
+    subtitle: '点击场景中的元素，了解停电侧设备的作用和操作要点',
     layout: 'scene_explore',
     sceneId: 'transmission_line_10kv',
-    instruction: '先熟悉场景中的设备，下一步你将按正确顺序操作',
+    instruction: '先熟悉停电设备，下一步了解安全措施设备',
     elements: [
-      { id: 'breaker_101', label: '101断路器', description: '切断负荷电流。操作前确认开关位置指示器在“分”位。' },
+      { id: 'breaker_101', label: '101断路器', description: '切断负荷电流。操作前确认开关位置指示器在”分”位。' },
       { id: 'isolator_1011', label: '1011刀闸（电源侧）', description: '形成可见断开点。操作后确认刀闸触头完全分离，肉眼可见间隙。' },
       { id: 'isolator_1012', label: '1012刀闸（线路侧）', description: '彻底隔离电源。两侧刀闸都断开后，设备才能确认为停电状态。' },
-      { id: 'test_pen', label: '验电器', description: '三步验电：自检→在已知带电设备上验证→在待验设备上验电。每步都不可省略。' },
+      { id: 'test_pen', label: '验电器', description: '三步验电：自检→在已知带电设备上验证→在待验设备上验电。每步都不可省略。' }
+    ],
+    next: 'd4_s3b',
+    progress: '5/8'
+  },
+  {
+    id: 'd4_s3b',
+    type: 'explore',
+    title: '熟悉虚拟现场 — 安全措施设备（Day 4）',
+    subtitle: '点击场景中的元素，了解安全措施的装设要点',
+    layout: 'scene_explore',
+    sceneId: 'transmission_line_10kv',
+    instruction: '熟悉完所有设备后，下一步将按正确顺序操作',
+    elements: [
       { id: 'ground_line_16', label: '#16杆接地线', description: '先接接地端（杆塔接地极），后接导体端（导线）。拆除时顺序相反。' },
-      { id: 'sign_stop_101', label: '标示牌', description: '“禁止合闸，有人工作”——挂在已断开的开关/刀闸操作把手上，防止误合闸。' },
+      { id: 'sign_stop_101', label: '标示牌', description: '”禁止合闸，有人工作”——挂在已断开的开关/刀闸操作把手上，防止误合闸。' },
       { id: 'barrier_16', label: '遮栏', description: '隔离工作区域，防止人员误入带电区域或高空坠落。' }
     ],
     next: 'd4_s4',
-    progress: '5/7'
+    progress: '6/8'
   },
   {
     id: 'd4_s4',
@@ -148,7 +161,7 @@ export const DAY4_ENRICHED_STEPS = [
       'ground_line_16': ['先接接地端', '再接导体端', '确认三相']
     },
     next: 'd4_s5',
-    progress: '6/7'
+    progress: '7/8'
   },
   {
     id: 'd4_s5',
@@ -179,6 +192,6 @@ export const DAY4_ENRICHED_STEPS = [
       nextDay: 'Day 5 · 数字化升级',
       preview: '明天学：用数字化工具提升效率和安全'
     },
-    progress: '7/7'
+    progress: '8/8'
   }
 ];
